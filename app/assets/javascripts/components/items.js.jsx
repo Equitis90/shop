@@ -1,9 +1,21 @@
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 class Items extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
-      error_message: ''
+      error_message: '',
+      modalIsOpen: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,6 +26,22 @@ class Items extends React.Component {
     this.onDismiss = this.onDismiss.bind(this);
     this.handleError = this.handleError.bind(this);
     this.closeError = this.closeError.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = '#f00';
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
   }
 
   onDismiss() {
@@ -57,6 +85,10 @@ class Items extends React.Component {
     this.setState({ items: newItems });
   }
 
+  componentWillMount() {
+    ReactModal.setAppElement('body');
+  }
+
   componentDidMount() {
     $.getJSON('/items.json', (response) => {
       this.setState({ items: response })
@@ -68,7 +100,8 @@ class Items extends React.Component {
 
   handleSubmit(item) {
     let newState = this.state.items.concat(item);
-    this.setState({ items: newState })
+    this.setState({ items: newState });
+    this.closeModal();
   }
 
   handleError(errors) {
@@ -90,7 +123,15 @@ class Items extends React.Component {
           {this.state.error_message}
           <button className="close" aria-label="close" onClick={this.closeError}>&times;</button>
         </div>
-        <NewItem title="" description="" price="0.00" gender="women" handleSubmit={this.handleSubmit} handleError={this.handleError}/>
+        <button onClick={this.openModal} className="open-modal">Добавить новый товар</button>
+        <ReactModal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        > <NewItem title="" description="" price="0.00" gender="women" handleSubmit={this.handleSubmit} handleError={this.handleError}/>
+        </ReactModal>
         <AllItems items={this.state.items} handleDelete={this.handleDelete} onUpdate={this.handleUpdate}/>
       </div>
     );

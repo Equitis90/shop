@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require react
+//= require ./vendor/react_modal
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
