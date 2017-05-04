@@ -1,0 +1,58 @@
+.new_item_dialog {
+  width: 300px;
+  margin: 10px auto;
+  padding: 5px 0px 5px 5px;
+  background: rgba(104, 217, 209, 0.89);
+  border-radius: 5px;
+
+  > * {
+    margin: 5px;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  button {
+    width: 95%;
+  }
+}
+
+.all_items {
+  margin: auto;
+  width: 80%;
+
+  h4, textarea, img {
+    vertical-align: middle;
+    display: inline-block;
+    margin: 10px;
+  }
+
+  h4 {
+    word-wrap: break-word;
+    width: 15%;
+  }
+  textarea {
+    width: 15%;
+    resize: none;
+  }
+
+  button {
+    margin: 5px;
+    width: 20%;
+    border-style: none;
+  }
+}
+
+.item {
+  margin-bottom: 4px;
+}
+
+.alert.alert-danger.fade.in {
+  margin: 10px auto 10px auto;
+  width: 40%;
+}

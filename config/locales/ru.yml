@@ -1,0 +1,16 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        item:
+          attributes:
+            image:
+               blank: Не выбрано изображение!
+            price:
+               blank: Не указана цена!
+            description:
+               blank: Отсутствует описание!
+            gender:
+               blank: Не указано для какого пола товар!
+            title:
+               blank: Не указано название продукта!
