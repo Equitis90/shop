@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :authentication_required!
+
   respond_to :json
 
   def index

@@ -24,20 +24,25 @@
 
 .all_items {
   margin: auto;
-  width: 80%;
+  width: 100%;
 
   h4, textarea, img {
     vertical-align: middle;
     display: inline-block;
-    margin: 10px;
+    margin: 5px;
   }
 
   h4 {
     word-wrap: break-word;
-    width: 15%;
+    width: 18%;
   }
+
+  input[type=text] {
+   width: 90%;
+  }
+
   textarea {
-    width: 15%;
+    width: 18%;
     resize: none;
   }
 
@@ -58,5 +63,5 @@
 }
 
 .open-modal {
-  margin: 10px;
+  margin: 60px 10px 10px 10px;
 }

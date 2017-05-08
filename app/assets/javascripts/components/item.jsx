@@ -36,10 +36,10 @@ class Item extends React.Component {
   }
 
   render() {
-    let title = this.state.editable ? <input
+    let title = this.state.editable ? <h4><input
       ref="title"
       type="text"
-      defaultValue={this.props.item.title}/> : <h4>{this.props.item.title}</h4>;
+      defaultValue={this.props.item.title}/></h4> : <h4>{this.props.item.title}</h4>;
     let description = !this.state.editable;
     let price = this.state.editable ? <h4><Price handleChangePrice={this.handleChangePrice}
                                                  price={this.state.price}/> грн.</h4> :
@@ -55,7 +55,7 @@ class Item extends React.Component {
     </h4> : <img src={this.state.image} height={100} width={200}/>;
 
     return (
-      <div>
+      <div className="thumbnail">
         {title}
         <textarea
           ref="description"
@@ -70,7 +70,6 @@ class Item extends React.Component {
           <button className="btn btn-primary" onClick={this.handleEdit}> {this.state.editable ? 'Сохранить' : 'Редактировать' } </button>
           <button className="btn btn-danger" onClick={this.props.handleDelete}>Удалить</button>
         </div>
-        <hr/>
       </div>
     )
   }
