@@ -1,5 +1,36 @@
 #main_container {
   margin-top: 60px;
+
+  .caption {
+    overflow: hidden;
+  }
+
+  .caption h4 {
+    white-space: nowrap;
+  }
+
+  .thumbnail {
+    margin: 5px;
+    padding: 0;
+    .caption-full {
+      padding: 9px;
+      color: #333;
+      height: auto;
+    }
+
+    img {
+      height: 100px;
+    }
+
+    button {
+      margin: 5px;
+      width: 95%;
+    }
+  }
+
+  footer {
+    margin: 50px 0;
+  }
 }
 
 #about {

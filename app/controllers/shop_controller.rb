@@ -1,6 +1,11 @@
 class ShopController < ApplicationController
   def index
-    @items = Item.all
+    if params[:gender]
+      items = Item.where(gender: params[:gender])
+    else
+      items = Item.all
+    end
+    @items = items
   end
 
   def about
