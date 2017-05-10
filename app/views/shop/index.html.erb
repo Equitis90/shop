@@ -6,9 +6,9 @@
     <div class="col-md-3">
       <p class="lead">Название магазина</p>
       <div class="list-group">
-        <%= link_to 'Мужские', shop_index_path(gender: 'men'), {:class => 'list-group-item'} %>
-        <%= link_to 'Женские', shop_index_path(gender: 'women'), {:class => 'list-group-item'} %>
-        <%= link_to 'Все', shop_index_path, {:class => 'list-group-item'} %>
+        <%= link_to 'Мужские', shop_index_path(gender: 'men'), {:class => 'list-group-item', data: { turbolinks: false }} %>
+        <%= link_to 'Женские', shop_index_path(gender: 'women'), {:class => 'list-group-item', data: { turbolinks: false }} %>
+        <%= link_to 'Все', shop_index_path, {:class => 'list-group-item', data: { turbolinks: false }} %>
       </div>
     </div>
 
