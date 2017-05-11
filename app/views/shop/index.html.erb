@@ -1,24 +1,5 @@
 <!-- Page Content -->
-<div class="container" id="main_container">
-
-  <div class="row">
-
-    <div class="col-md-3">
-      <p class="lead">Название магазина</p>
-      <div class="list-group">
-        <%= link_to 'Мужские', shop_index_path(gender: 'men'), {:class => 'list-group-item', data: { turbolinks: false }} %>
-        <%= link_to 'Женские', shop_index_path(gender: 'women'), {:class => 'list-group-item', data: { turbolinks: false }} %>
-        <%= link_to 'Все', shop_index_path, {:class => 'list-group-item', data: { turbolinks: false }} %>
-      </div>
-    </div>
-
-    <div class="col-md-9">
-      <div class="row">
-        <%= react_component 'ShopList', {items: @items} %>
-      </div>
-    </div>
-  </div>
-</div>
+  <%= react_component 'Shop', {items: @items} %>
 <!-- /.container -->
 
 <div class="container">
@@ -29,7 +10,7 @@
   <footer>
     <div class="row">
       <div class="col-lg-12">
-        <p>Copyright &copy; Equitis 2017</p>
+        <p>Copyright &copy; Equitis</p>
       </div>
     </div>
   </footer>

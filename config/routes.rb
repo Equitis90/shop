@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   get 'admin/index'
 
   get 'sessions/new'
-
   get 'sessions/create'
 
   get 'shop/index'

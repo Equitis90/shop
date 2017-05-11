@@ -60,7 +60,7 @@ class Item extends React.Component {
         <textarea
           ref="description"
           cols={20}
-          rows={3}
+          rows={6}
           readOnly={description}
           defaultValue={this.props.item.description}/>
         {price}

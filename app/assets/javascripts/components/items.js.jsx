@@ -27,17 +27,11 @@ class Items extends React.Component {
     this.handleError = this.handleError.bind(this);
     this.closeError = this.closeError.bind(this);
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
   openModal() {
     this.setState({modalIsOpen: true});
-  }
-
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
   }
 
   closeModal() {
@@ -126,7 +120,6 @@ class Items extends React.Component {
         <button onClick={this.openModal} className="open-modal">Добавить новый товар</button>
         <ReactModal
           isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
           contentLabel="New product"
