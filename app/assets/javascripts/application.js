@@ -10,12 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require react
-//= require ./vendor/react_modal
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require components
+//= require react
+//= require ./vendor/react_modal
 //= require react_ujs
+//= require components
 //= require turbolinks
 //= require_tree .

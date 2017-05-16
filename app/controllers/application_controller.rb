@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :init_cart
 
   ApplicationNotAuthenticated = Class.new(StandardError)
 
@@ -12,6 +13,10 @@ class ApplicationController < ActionController::Base
       end
       format.any { head 401 }
     end
+  end
+
+  def init_cart
+    session[:cart] = {items:{}, count: 0, sum: 0} unless session[:cart]
   end
 
   def authentication_required!

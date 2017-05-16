@@ -13,5 +13,6 @@ module Shop
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = :ru
     config.assets.compile = true
+    config.react.addons = true
   end
 end

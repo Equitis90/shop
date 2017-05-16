@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Shop</title>
+    <title>Название магазина</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -29,12 +29,12 @@
             <%= link_to 'Про нас', shop_about_path %>
           </li>
         </ul>
-        <% if session[:current_user] %>
-          <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+          <% if session[:current_user] %>
             <li><%= link_to 'Редактирование товаров', admin_index_path, data: { turbolinks: false } %></li>
             <li><%= link_to 'Выйти', session_path('logout'), method: :delete %></li>
-          </ul>
-        <% end %>
+          <% end %>
+        </ul>
       </div>
       <!-- /.navbar-collapse -->
     </div>

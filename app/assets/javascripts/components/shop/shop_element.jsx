@@ -13,7 +13,7 @@ class ShopElement extends React.Component {
           <h4>{this.props.item.title}</h4>
           <p>{this.props.item.description}</p>
           <p>Категория: {this.props.item.gender === 'women' ? 'Женские' : 'Мужские'}</p>
-          <button className="btn btn-primary">В корзину</button>
+          <button className="btn btn-primary" onClick={this.props.toBasket}>В корзину</button>
         </div>
       </div>
     )
