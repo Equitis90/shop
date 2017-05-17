@@ -2,7 +2,47 @@ class CartDialog extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      isButtonDisable: true,
+      phone: ''
+    };
+
     this.deleteFromBasket = this.deleteFromBasket.bind(this);
+    this.buttonCheck = this.buttonCheck.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.order = this.order.bind(this);
+  }
+
+  order(phone) {
+    this.props.order(phone)
+  }
+
+  handleChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  componentDidUpdate() {
+    this.buttonCheck()
+  }
+
+  buttonCheck() {
+    let state = this.state;
+    let buttonDisable = true;
+    if (state.phone !== undefined &&
+      state.phone !== "" && state.phone.length >= 10
+    ) {
+      buttonDisable = false
+    }
+    if (buttonDisable !== state.isButtonDisable) {
+      this.setState({
+        isButtonDisable: buttonDisable
+      })
+    }
   }
 
   deleteFromBasket(id) {
@@ -44,13 +84,13 @@ class CartDialog extends React.Component {
             <b>{item.title}</b>
           </td>
           <td>
-            <b>₴ {parseFloat(item.price).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</b>
+            <b>₴ {toCurrency(item.price)}</b>
           </td>
           <td>
             <b>{item.count}</b>
           </td>
           <td>
-            <b>₴ {parseFloat(item.sum).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</b>
+            <b>₴ {toCurrency(item.sum)}</b>
           </td>
           <td className="button-td">
             <button className="btn btn-danger" onClick={_this.deleteFromBasket.bind(this, item.id)}>Удалить из корзины</button>
@@ -79,12 +119,16 @@ class CartDialog extends React.Component {
                 <td><b>Итого:</b></td>
                 <td><b>{this.props.cart.count}</b></td>
                 <td>
-                  <b> ₴ {parseFloat(this.props.cart.sum).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</b>
+                  <b> ₴ {toCurrency(this.props.cart.sum)}</b>
                 </td>
                 <td/>
               </tr>
             </tbody>
           </table>
+          <label>Ваш номер телефона: <input name="phone" ref="phone" value={this.state.phone} onChange={this.handleChange}/></label>
+          &nbsp;
+          <button className="btn btn-primary" disabled={this.state.isButtonDisable} onClick={this.order.bind(this, this.state.phone)}>Заказать</button>
+          <br/>
           <button className="btn btn-default" onClick={this.props.closeBasket}>Закрыть корзину</button>
         </div>
       </div>

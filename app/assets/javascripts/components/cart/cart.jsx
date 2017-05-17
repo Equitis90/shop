@@ -14,7 +14,7 @@ class Cart extends React.Component {
     <div id="cart" className="thumbnail">
       <h3>Корзина</h3>
       <h4>Товаров: <b>{this.props.cart.count}</b></h4>
-      <h4>На сумму: ₴ <b>{parseFloat(this.props.cart.sum).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</b></h4>
+      <h4>На сумму: ₴ <b>{toCurrency(this.props.cart.sum)}</b></h4>
       {buttons}
     </div>
     )

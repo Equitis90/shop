@@ -19,3 +19,7 @@
 //= require components
 //= require turbolinks
 //= require_tree .
+
+function toCurrency(str) {
+  return parseFloat(str).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
+}

@@ -43,7 +43,7 @@ class Item extends React.Component {
     let description = !this.state.editable;
     let price = this.state.editable ? <h4><Price handleChangePrice={this.handleChangePrice}
                                                  price={this.state.price}/> грн.</h4> :
-      <h4>{this.state.price} грн.</h4>;
+      <h4>{toCurrency(this.state.price)} грн.</h4>;
     let gender = this.state.editable ? <h4><select ref="gender" name="gender" defaultValue={this.props.item.gender}>
       <option value="women">Женские</option>
       <option value="men">Мужские</option>

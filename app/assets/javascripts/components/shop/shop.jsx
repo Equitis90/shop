@@ -29,6 +29,26 @@ class Shop extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.deleteFromBasket = this.deleteFromBasket.bind(this);
+    this.order = this.order.bind(this);
+  }
+
+  order(phone) {
+    //$.ajax({
+    //  url: `/shop/order`,
+    //  type: 'GET',
+    //  data: {phone: phone},
+    //  success:(response) => {
+    //    this.closeModal();
+    //    this.setState({ cart: response, cart_message: 'Ваш заказ создан' });
+    //    setTimeout(() => {this.setState({cart_message: ''})}, 2000);
+    //  },
+    //  error: (response) => {
+    //    this.handleError(response.responseJSON.errors)
+    //  }
+    //});
+    this.closeModal();
+    this.setState({ cart: {'items':{}, 'sum': '0', 'count':'0'}, cart_message: 'Ваш заказ создан' });
+    setTimeout(() => {this.setState({cart_message: ''})}, 2000);
   }
 
   deleteFromBasket(id) {
@@ -40,7 +60,6 @@ class Shop extends React.Component {
         this.setState({ cart: response })
       },
       error: (response) => {
-        alert(JSON.stringify(response));
         this.handleError(response.responseJSON.errors)
       }
     });
@@ -147,6 +166,7 @@ class Shop extends React.Component {
         closeBasket={this.closeModal}
         cart={this.state.cart}
         deleteFromBasket={this.deleteFromBasket}
+        order={this.order}
       />
       </ReactModal>
       <React.addons.CSSTransitionGroup transitionName="anim"
