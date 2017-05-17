@@ -53,8 +53,8 @@ class ShopController < ApplicationController
   end
 
   def order
-    cart = session[:cart]
-    OrderMailer.order_mail(params[:phone], cart).deliver_now
+    #cart = session[:cart]
+    #OrderMailer.order_mail(params[:phone], cart).deliver_now
 
     respond_to do |format|
       format.json { render json: session[:cart] = {items:{}, count: 0, sum: 0} }

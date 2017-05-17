@@ -33,22 +33,19 @@ class Shop extends React.Component {
   }
 
   order(phone) {
-    //$.ajax({
-    //  url: `/shop/order`,
-    //  type: 'GET',
-    //  data: {phone: phone},
-    //  success:(response) => {
-    //    this.closeModal();
-    //    this.setState({ cart: response, cart_message: 'Ваш заказ создан' });
-    //    setTimeout(() => {this.setState({cart_message: ''})}, 2000);
-    //  },
-    //  error: (response) => {
-    //    this.handleError(response.responseJSON.errors)
-    //  }
-    //});
-    this.closeModal();
-    this.setState({ cart: {'items':{}, 'sum': '0', 'count':'0'}, cart_message: 'Ваш заказ создан' });
-    setTimeout(() => {this.setState({cart_message: ''})}, 2000);
+    $.ajax({
+      url: `/shop/order`,
+      type: 'GET',
+      data: {phone: phone},
+      success:(response) => {
+        this.closeModal();
+        this.setState({ cart: response, cart_message: 'Ваш заказ создан' });
+        setTimeout(() => {this.setState({cart_message: ''})}, 2000);
+      },
+      error: (response) => {
+        this.handleError(response.responseJSON.errors)
+      }
+    });
   }
 
   deleteFromBasket(id) {
