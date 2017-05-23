@@ -34,7 +34,7 @@ class Shop extends React.Component {
 
   order(phone) {
     $.ajax({
-      url: `/shop/order`,
+      url: `/basket/order`,
       type: 'GET',
       data: {phone: phone},
       success:(response) => {
@@ -50,9 +50,9 @@ class Shop extends React.Component {
 
   deleteFromBasket(id) {
     $.ajax({
-      url: `/shop/delete_from_basket`,
-      type: 'GET',
-      data: {id: id},
+      url: `/basket/${id}`,
+      type: 'PUT',
+      data: {delete: true},
       success:(response) => {
         this.setState({ cart: response })
       },
@@ -76,10 +76,10 @@ class Shop extends React.Component {
 
   deleteBasket() {
     $.ajax({
-      url: `/shop/delete_basket`,
-      type: 'GET',
+      url: `/basket/1`,
+      type: 'DELETE',
       success:(response) => {
-        this.setState({ cart: response })
+        this.setState({ cart: response });
       },
       error: (response) => {
         this.handleError(response.responseJSON.errors)
@@ -89,9 +89,9 @@ class Shop extends React.Component {
 
   toBasket(id) {
     $.ajax({
-      url: `/shop/to_basket`,
-      type: 'GET',
-      data: {item_id: id},
+      url: `/basket/${id}`,
+      type: 'PUT',
+      data: {add: true},
       success:(response) => {
         this.setState({ cart: response, cart_message: 'Товар добавлен в корзину' });
         setTimeout(() => {this.setState({cart_message: ''})}, 2000);

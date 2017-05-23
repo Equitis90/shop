@@ -6,10 +6,7 @@ Rails.application.routes.draw do
 
   get 'shop/index'
   get 'shop/about'
-  get 'shop/to_basket'
-  get 'shop/delete_basket'
-  get 'shop/delete_from_basket'
-  get 'shop/order'
+  get 'basket/order'
 
   resources :sessions, only: [:create, :new, :destroy]
 
@@ -17,5 +14,6 @@ Rails.application.routes.draw do
   get 'admin/to_index'
 
   resources :items
+  resources :basket
   root 'shop#index'
 end

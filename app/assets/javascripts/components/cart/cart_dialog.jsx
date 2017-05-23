@@ -102,7 +102,7 @@ class CartDialog extends React.Component {
     return (
     <div className="container" id="cart-dialog">
       <div className="row">
-        <div className="col-md-12">
+        <div className="col-sm-12 col-lg-12 col-md-12">
           <table className="table">
             <thead>
               <tr>
