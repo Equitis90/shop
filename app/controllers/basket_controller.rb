@@ -17,8 +17,9 @@ class BasketController < ApplicationController
     elsif params[:delete]
       item_id = params[:id].to_s
       sum = session[:cart]['items'][item_id]['sum'].to_f
+      cart_sum = session[:cart]['sum'].to_f
       count = session[:cart]['items'][item_id]['count'].to_i
-      session[:cart]['sum'] = (session[:cart]['sum'].to_f - sum).to_s
+      session[:cart]['sum'] = ((cart_sum - sum).abs).to_s
       session[:cart]['count'] = (session[:cart]['count'].to_i - count).to_s
       session[:cart]['items'].delete(item_id)
     end

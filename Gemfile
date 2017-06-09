@@ -46,6 +46,11 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5.0'
   gem 'capybara'
+  gem 'faker'
+  gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 group :development do

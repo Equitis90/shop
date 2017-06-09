@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
   def destroy
     respond_with Item.destroy(params[:id])
   end
+
   private
 
   def item_params

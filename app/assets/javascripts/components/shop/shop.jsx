@@ -97,6 +97,7 @@ class Shop extends React.Component {
         setTimeout(() => {this.setState({cart_message: ''})}, 2000);
       },
       error: (response) => {
+        alert(JSON.stringify(response));
         this.handleError(response.responseJSON.errors)
       }
     });
