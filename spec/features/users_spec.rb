@@ -10,4 +10,6 @@ RSpec.feature "Users", type: :feature, js: true do
 
     find_by_id('cart').has_content?
   end
+
+
 end

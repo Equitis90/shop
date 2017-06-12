@@ -15,10 +15,17 @@
 }
 
 .alert.alert-info {
-  text-align: center;
-  width: 80%;
-  position: fixed;
-  bottom: 5px;
+  text-align            : center;
+  position              : fixed;
+  top                   : 50%;
+  left                  : 50%;
+  right                 : auto;
+  bottom                : auto;
+  marginRight           : -50%;
+  transform             : translate(-50%, -50%);
+  -ms-transform         : translate(-50%, -50%);
+  -webkit-transform     : translate(-50%, -50%);
+  width                 : 60%;
 }
 
 .anim-enter {
