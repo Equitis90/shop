@@ -26,6 +26,9 @@
   margin: auto;
   width: 100%;
 
+  .thumbnail {
+    width: 100%;
+  }
   h4, textarea, img {
     vertical-align: middle;
     display: inline-block;
@@ -34,11 +37,19 @@
 
   h4 {
     word-wrap: break-word;
-    width: 18%;
+    width: 14%;
   }
 
   input[type=text] {
-   width: 90%;
+   width: 80%;
+  }
+
+  select[name=vendor] {
+    width: 150px;
+  }
+
+  input[type=file] {
+    margin-left: -30px;
   }
 
   textarea {

@@ -6,6 +6,7 @@ class NewItem extends React.Component {
       description: this.props.description,
       price: this.props.price,
       gender: this.props.gender,
+      vendor: '',
       files: [],
       isButtonDisable: true
     };
@@ -34,7 +35,9 @@ class NewItem extends React.Component {
       state.description !== "" &&
       state.files.length > 0 &&
       state.price !== undefined &&
-      state.price !== ""
+      state.price !== "" &&
+      state.vendor !== undefined &&
+      state.vendor !== ""
     ) {
       buttonDisable = false
     }
@@ -55,10 +58,11 @@ class NewItem extends React.Component {
     let price = this.state.price;
     let gender = this.state.gender;
     let image = this.state.files[0];
+    let vendor = this.state.vendor;
     $.ajax({
       url: '/items',
       type: 'POST',
-      data: { item: { title: title, description: description, price: price, gender: gender, image: image } },
+      data: { item: { title: title, description: description, price: price, gender: gender, image: image, vendor: vendor } },
       contentType: 'multipart/form-data',
       success: (item) => {
         this.props.handleSubmit(item);
@@ -110,6 +114,38 @@ class NewItem extends React.Component {
         <select name="gender" value={this.state.gender} onChange={this.handleChange}>
           <option value="women">Женские</option>
           <option value="men">Мужские</option>
+        </select>
+        <label>Бренд:</label>
+        <select name="vendor" onChange={this.handleChange}>
+          <option disabled selected value> -- Выберите бренд -- </option>
+          <option value="Hugo Boss">Hugo Boss</option>
+          <option value="Kenzo">Kenzo</option>
+          <option value="Paco Rabanne">Paco Rabanne</option>
+          <option value="Gucci">Gucci</option>
+          <option value="Trussardi">Trussardi</option>
+          <option value="Lanvin">Lanvin</option>
+          <option value="Bond">Bond</option>
+          <option value="Givenchy">Givenchy</option>
+          <option value="Moschino">Moschino</option>
+          <option value="Yves Saint Laurent">Yves Saint Laurent</option>
+          <option value="Nina Ricci">Nina Ricci</option>
+          <option value="Tom Ford">Tom Ford</option>
+          <option value="Versace">Versace</option>
+          <option value="Roberto Cavalli">Roberto Cavalli</option>
+          <option value="Lancome">Lancome</option>
+          <option value="Dolce&Gabbana">Dolce&Gabbana</option>
+          <option value="Dior">Dior</option>
+          <option value="Chanel">Chanel</option>
+          <option value="Carolina Herrera">Carolina Herrera</option>
+          <option value="Calvin Klein">Calvin Klein</option>
+          <option value="Cacharel">Cacharel</option>
+          <option value="Burberry">Burberry</option>
+          <option value="Beyonce">Beyonce</option>
+          <option value="Bvlgari">Bvlgari</option>
+          <option value="Angel Schlesser">Angel Schlesser</option>
+          <option value="Armand Basi">Armand Basi</option>
+          <option value="Armani">Armani</option>
+          <option value="Vin Diesel">Vin Diesel</option>
         </select>
         <br/>
         <label>Изображение:

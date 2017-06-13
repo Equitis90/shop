@@ -18,7 +18,10 @@ class Shop extends React.Component {
       error_message: '',
       cart: this.props.cart,
       cart_message: '',
-      modalIsOpen: false
+      modalIsOpen: false,
+      gender: '',
+      vendor: [],
+      all_vendors: true
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -30,6 +33,31 @@ class Shop extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.deleteFromBasket = this.deleteFromBasket.bind(this);
     this.order = this.order.bind(this);
+    this.handleCheckbox = this.handleCheckbox.bind(this);
+  }
+
+  handleCheckbox(event){
+    const target = event.target;
+    const value = target.value;
+
+    let newVendor = this.state.vendor.slice();
+    let all_vendors = this.state.all_vendors;
+
+    if(value === 'all') {
+      all_vendors = true;
+      $(".opt").prop('checked', false);
+      newVendor = [];
+    } else {
+      all_vendors = false;
+      if(target.checked === true) {
+        newVendor.push(value);
+      } else {
+        let index = newVendor.indexOf(value);
+        newVendor.splice(index, 1);
+      }
+    }
+
+    this.setState({vendor: newVendor, all_vendors: all_vendors})
   }
 
   order(phone) {
@@ -115,18 +143,26 @@ class Shop extends React.Component {
     this.setState({error_message: error_text})
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.gender !== this.state.gender || prevState.vendor !== this.state.vendor) {
+      $.ajax({
+        url: `/shop/index.json`,
+        type: 'get',
+        data: {gender: this.state.gender, vendor: this.state.vendor},
+        success:(response) => {
+          this.setState({ items: response })
+        },
+        error: (response) => {
+          this.handleError(response.responseJSON.errors)
+        }
+      });
+    }
+  }
+
   handleClick(gender, event) {
-    $.ajax({
-      url: `/shop/index.json`,
-      type: 'get',
-      data: {gender: gender},
-      success:(response) => {
-        this.setState({ items: response })
-      },
-      error: (response) => {
-        this.handleError(response.responseJSON.errors)
-      }
-    });
+    if(gender !== this.state.gender) {
+      this.setState({gender: gender});
+    }
     event.preventDefault();
   }
 
@@ -141,6 +177,41 @@ class Shop extends React.Component {
             <ShopSorter title='Женские' handleClick={this.handleClick.bind(this, 'women')}/>
             <ShopSorter title='Все' handleClick={this.handleClick.bind(this, '')}/>
           </div>
+          <div className="thumbnail">
+            <h4>Бренды</h4>
+            <ul id="vendors">
+              <li><label><input value="all" type="checkbox" checked={this.state.all_vendors} onChange={this.handleCheckbox}/> Все</label></li>
+              <li><label><input className="opt" value="Hugo Boss" type="checkbox" onChange={this.handleCheckbox}/> Hugo Boss</label></li>
+              <li><label><input className="opt" value="Kenzo" type="checkbox" onChange={this.handleCheckbox}/> Kenzo</label></li>
+              <li><label><input className="opt" value="Paco Rabanne" type="checkbox" onChange={this.handleCheckbox}/> Paco Rabanne</label></li>
+              <li><label><input className="opt" value="Gucci" type="checkbox" onChange={this.handleCheckbox}/> Gucci</label></li>
+              <li><label><input className="opt" value="Trussardi" type="checkbox" onChange={this.handleCheckbox}/> Trussardi</label></li>
+              <li><label><input className="opt" value="Lanvin" type="checkbox" onChange={this.handleCheckbox}/> Lanvin</label></li>
+              <li><label><input className="opt" value="Bond" type="checkbox" onChange={this.handleCheckbox}/> Bond</label></li>
+              <li><label><input className="opt" value="Givenchy" type="checkbox" onChange={this.handleCheckbox}/> Givenchy</label></li>
+              <li><label><input className="opt" value="Moschino" type="checkbox" onChange={this.handleCheckbox}/> Moschino</label></li>
+              <li><label><input className="opt" value="Yves Saint Laurent" type="checkbox" onChange={this.handleCheckbox}/> Yves Saint Laurent</label></li>
+              <li><label><input className="opt" value="Nina Ricci" type="checkbox" onChange={this.handleCheckbox}/> Nina Ricci</label></li>
+              <li><label><input className="opt" value="Tom Ford" type="checkbox" onChange={this.handleCheckbox}/> Tom Ford</label></li>
+              <li><label><input className="opt" value="Versace" type="checkbox" onChange={this.handleCheckbox}/> Versace</label></li>
+              <li><label><input className="opt" value="Roberto Cavalli" type="checkbox" onChange={this.handleCheckbox}/> Roberto Cavalli</label></li>
+              <li><label><input className="opt" value="Lancome" type="checkbox" onChange={this.handleCheckbox}/> Lancome</label></li>
+              <li><label><input className="opt" value="Dolce&Gabbana" type="checkbox" onChange={this.handleCheckbox}/> Dolce&Gabbana</label></li>
+              <li><label><input className="opt" value="Dior" type="checkbox" onChange={this.handleCheckbox}/> Dior</label></li>
+              <li><label><input className="opt" value="Chanel" type="checkbox" onChange={this.handleCheckbox}/> Chanel</label></li>
+              <li><label><input className="opt" value="Carolina Herrera" type="checkbox" onChange={this.handleCheckbox}/> Carolina Herrera</label></li>
+              <li><label><input className="opt" value="Calvin Klein" type="checkbox" onChange={this.handleCheckbox}/> Calvin Klein</label></li>
+              <li><label><input className="opt" value="Cacharel" type="checkbox" onChange={this.handleCheckbox}/> Cacharel</label></li>
+              <li><label><input className="opt" value="Burberry" type="checkbox" onChange={this.handleCheckbox}/> Burberry</label></li>
+              <li><label><input className="opt" value="Beyonce" type="checkbox" onChange={this.handleCheckbox}/> Beyonce</label></li>
+              <li><label><input className="opt" value="Bvlgari" type="checkbox" onChange={this.handleCheckbox}/> Bvlgari</label></li>
+              <li><label><input className="opt" value="Angel Schlesser" type="checkbox" onChange={this.handleCheckbox}/> Angel Schlesser</label></li>
+              <li><label><input className="opt" value="Armand Basi" type="checkbox" onChange={this.handleCheckbox}/> Armand Basi</label></li>
+              <li><label><input className="opt" value="Armani" type="checkbox" onChange={this.handleCheckbox}/> Armani</label></li>
+              <li><label><input className="opt" value="Vin Diesel" type="checkbox" onChange={this.handleCheckbox}/> Vin Diesel</label></li>
+            </ul>
+          </div>
+
           <Cart cart={this.state.cart} openBasket={this.openModal} deleteBasket={this.deleteBasket}/>
         </div>
 

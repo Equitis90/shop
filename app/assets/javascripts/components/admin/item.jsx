@@ -20,8 +20,9 @@ class Item extends React.Component {
       let description = this.refs.description.value;
       let price = this.state.price;
       let gender = this.refs.gender.value;
+      let vendor = this.refs.vendor.value;
       let image = this.state.image;
-      let item = {id: id, title: title, description: description, price: price, gender: gender, image: image};
+      let item = {id: id, title: title, description: description, price: price, gender: gender, image: image, vendor: vendor};
       this.props.handleUpdate(item)
     }
     this.setState({editable: !this.state.editable})
@@ -49,6 +50,37 @@ class Item extends React.Component {
       <option value="men">Мужские</option>
     </select></h4> : <h4>{this.props.item.gender === 'women' ? 'женские' : 'мужские'}</h4>;
 
+    let vendor = this.state.editable ? <h4><select ref="vendor" name="vendor" defaultValue={this.props.item.vendor}>
+      <option value="Hugo Boss">Hugo Boss</option>
+      <option value="Kenzo">Kenzo</option>
+      <option value="Paco Rabanne">Paco Rabanne</option>
+      <option value="Gucci">Gucci</option>
+      <option value="Trussardi">Trussardi</option>
+      <option value="Lanvin">Lanvin</option>
+      <option value="Bond">Bond</option>
+      <option value="Givenchy">Givenchy</option>
+      <option value="Moschino">Moschino</option>
+      <option value="Yves Saint Laurent">Yves Saint Laurent</option>
+      <option value="Nina Ricci">Nina Ricci</option>
+      <option value="Tom Ford">Tom Ford</option>
+      <option value="Versace">Versace</option>
+      <option value="Roberto Cavalli">Roberto Cavalli</option>
+      <option value="Lancome">Lancome</option>
+      <option value="Dolce&Gabbana">Dolce&Gabbana</option>
+      <option value="Dior">Dior</option>
+      <option value="Chanel">Chanel</option>
+      <option value="Carolina Herrera">Carolina Herrera</option>
+      <option value="Calvin Klein">Calvin Klein</option>
+      <option value="Cacharel">Cacharel</option>
+      <option value="Burberry">Burberry</option>
+      <option value="Beyonce">Beyonce</option>
+      <option value="Bvlgari">Bvlgari</option>
+      <option value="Angel Schlesser">Angel Schlesser</option>
+      <option value="Armand Basi">Armand Basi</option>
+      <option value="Armani">Armani</option>
+      <option value="Vin Diesel">Vin Diesel</option>
+    </select></h4> : <h4>{this.props.item.vendor}</h4>;
+
     let img = this.state.editable ? <h4>
       <img src={this.state.image} height={100} width={200}/>
       <Image selectImage={this.selectImage} files={this.state.files} required={false}/>
@@ -65,6 +97,7 @@ class Item extends React.Component {
           defaultValue={this.props.item.description}/>
         {price}
         {gender}
+        {vendor}
         {img}
         <div>
           <button className="btn btn-primary" onClick={this.handleEdit}> {this.state.editable ? 'Сохранить' : 'Редактировать' } </button>

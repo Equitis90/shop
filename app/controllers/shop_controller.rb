@@ -1,14 +1,16 @@
 class ShopController < ApplicationController
   def index
+    @items = Item.all
+    if params[:vendor] && params[:vendor] != []
+      @items = @items.where(vendor: params[:vendor])
+    end
     if params[:gender] && params[:gender] != ''
-      @items = Item.where(gender: params[:gender]).order(:id)
-    else
-      @items = Item.order(:id)
+      @items = @items.where(gender: params[:gender])
     end
 
     respond_to do |format|
       format.html
-      format.json { render json: @items }
+      format.json { render json: @items.order(:id) }
     end
   end
 
