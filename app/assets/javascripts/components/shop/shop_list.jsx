@@ -20,7 +20,7 @@ class ShopList extends React.Component {
 
     return(
       <div className="table-row-equal">
-        {items}
+          {items}
       </div>
     )
   }

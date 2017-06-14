@@ -21,7 +21,9 @@ class Shop extends React.Component {
       modalIsOpen: false,
       gender: '',
       vendor: [],
-      all_vendors: true
+      all_vendors: true,
+      page: 1,
+      last_page: this.props.last_page
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -34,6 +36,38 @@ class Shop extends React.Component {
     this.deleteFromBasket = this.deleteFromBasket.bind(this);
     this.order = this.order.bind(this);
     this.handleCheckbox = this.handleCheckbox.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+
+  handleScroll() {
+    const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (windowBottom >= docHeight && this.state.last_page !== true) {
+      let page = this.state.page + 1;
+      $.ajax({
+        url: `/shop/index.json`,
+        type: 'get',
+        data: {gender: this.state.gender, vendor: this.state.vendor, page: page },
+        success:(response) => {
+          let newItems = this.state.items.slice().concat(response.items);
+          this.setState({ items: newItems, last_page: response.last_page, page: page})
+        },
+        error: (response) => {
+          this.handleError(response.responseJSON.errors)
+        }
+      });
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   handleCheckbox(event){
@@ -150,7 +184,7 @@ class Shop extends React.Component {
         type: 'get',
         data: {gender: this.state.gender, vendor: this.state.vendor},
         success:(response) => {
-          this.setState({ items: response })
+          this.setState({ items: response.items , last_page: response.last_page, page: 0})
         },
         error: (response) => {
           this.handleError(response.responseJSON.errors)

@@ -1,6 +1,7 @@
 class ShopController < ApplicationController
   def index
-    @items = Item.order(:id)
+    page = params[:page] || 0
+    @items = Item.page(page).per(12).order(:id)
     if params[:vendor] && params[:vendor] != []
       @items = @items.where(vendor: params[:vendor])
     end
@@ -8,9 +9,11 @@ class ShopController < ApplicationController
       @items = @items.where(gender: params[:gender])
     end
 
+    @last_page = @items.last_page?
+
     respond_to do |format|
       format.html
-      format.json { render json: @items }
+      format.json { render json: {items: @items, last_page: @last_page} }
     end
   end
 
