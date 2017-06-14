@@ -211,7 +211,6 @@ class Shop extends React.Component {
               <li><label><input className="opt" value="Vin Diesel" type="checkbox" onChange={this.handleCheckbox}/> Vin Diesel</label></li>
             </ul>
           </div>
-
           <Cart cart={this.state.cart} openBasket={this.openModal} deleteBasket={this.deleteBasket}/>
         </div>
 

@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 #gem 'bcrypt', '~> 3.1.7'
 
 gem 'responders'
-
+gem 'kaminari'
 # Use Paperclip for image handle
 #gem "paperclip", "~> 5.0.0"
 # Use Capistrano for deployment

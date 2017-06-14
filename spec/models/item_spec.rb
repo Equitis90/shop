@@ -26,4 +26,8 @@ RSpec.describe Item, type: :model do
   it 'should not create item without gender' do
     expect {FactoryGirl.create(:item, gender: nil)}.to raise_error ActiveRecord::RecordInvalid
   end
+
+  it 'should not create item without vendor' do
+    expect {FactoryGirl.create(:item, vendor: nil)}.to raise_error ActiveRecord::StatementInvalid
+  end
 end

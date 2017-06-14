@@ -17,11 +17,29 @@
 
     .thumbnail {
       padding: 0;
+      height: 500px;
+      overflow: visible;
+
+      .description {
+        height: 85px;
+        overflow: hidden;
+        position: relative;
+        width: auto;
+      }
+
+      :hover {
+        .description {
+          height: 100%;
+          z-index: 100;
+          background: white;
+        }
+      }
+
       .caption {
         padding: 0;
         h4 {
           padding: 2px;
-          white-space: nowrap;
+          word-wrap: break-word;
         }
 
         img {
@@ -66,4 +84,24 @@
   h2 {
     text-align: center;
   }
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.priceh:before,
+.priceh:after {
+  content: "";
+  display: table;
+}
+.priceh:after {
+  clear: both;
+}
+.priceh {
+  zoom: 1; /* For IE 6/7 (trigger hasLayout) */
 }

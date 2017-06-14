@@ -1,6 +1,6 @@
 class ShopController < ApplicationController
   def index
-    @items = Item.all
+    @items = Item.order(:id)
     if params[:vendor] && params[:vendor] != []
       @items = @items.where(vendor: params[:vendor])
     end
@@ -10,7 +10,7 @@ class ShopController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @items.order(:id) }
+      format.json { render json: @items }
     end
   end
 
