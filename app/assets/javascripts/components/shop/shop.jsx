@@ -40,11 +40,11 @@ class Shop extends React.Component {
   }
 
   handleScroll() {
-    const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+    const divHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
     const body = document.body;
     const html = document.documentElement;
-    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
-    const windowBottom = windowHeight + window.pageYOffset;
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight); //document.getElementById('list').clientHeight;
+    const windowBottom = divHeight + window.pageYOffset;
     if (windowBottom >= docHeight && this.state.last_page !== true) {
       let page = this.state.page + 1;
       $.ajax({
@@ -253,7 +253,7 @@ class Shop extends React.Component {
             {this.state.error_message}
             <button className="close" aria-label="close" onClick={this.closeError}>&times;</button>
           </div>
-          <div className="row">
+          <div className="row" id="list">
             <ShopList items={this.state.items} toBasket={this.toBasket}/>
           </div>
         </div>

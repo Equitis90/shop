@@ -1,6 +1,6 @@
 class ShopController < ApplicationController
   def index
-    page = params[:page] || 0
+    page = params[:page] || 1
     @items = Item.page(page).per(12).order(:id)
     if params[:vendor] && params[:vendor] != []
       @items = @items.where(vendor: params[:vendor])
