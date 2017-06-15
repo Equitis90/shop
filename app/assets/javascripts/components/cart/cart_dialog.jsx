@@ -79,60 +79,49 @@ class CartDialog extends React.Component {
 
     items = $.map(items, function(item) {
       return (
-        <tr key={item.id}>
-          <td>
+        <div className="row thumbnail" key={item.id}>
+          <div className="col-sm-2 col-md-2 col-lg-2">
             <b>{item.title}</b>
-          </td>
-          <td>
-            <b>₴ {toCurrency(item.price)}</b>
-          </td>
-          <td>
-            <b>{item.count}</b>
-          </td>
-          <td>
-            <b>₴ {toCurrency(item.sum)}</b>
-          </td>
-          <td className="button-td">
+          </div>
+          <div className="col-sm-2 col-md-2 col-lg-2">
+            <b>Цена: ₴ {toCurrency(item.price)}</b>
+          </div>
+          <div className="col-sm-2 col-md-2 col-lg-2">
+            <b>Количество: {item.count}</b>
+          </div>
+          <div className="col-sm-3 col-md-3 col-lg-3">
+            <b>Сумма: ₴ {toCurrency(item.sum)}</b>
+          </div>
+          <div className="button-td col-sm-3 col-md-3 col-lg-3">
             <button className="btn btn-danger" onClick={_this.deleteFromBasket.bind(this, item.id)}>Удалить из корзины</button>
-          </td>
-        </tr>
+          </div>
+        </div>
       )
     });
 
     return (
     <div className="container" id="cart-dialog">
-      <div className="row">
-        <div className="col-sm-12 col-lg-12 col-md-12">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Название</th>
-                <th>Цена</th>
-                <th>Количество</th>
-                <th>Сумма</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items}
-              <tr className="success">
-                <td>&nbsp;</td>
-                <td><b>Итого:</b></td>
-                <td><b>{this.props.cart.count}</b></td>
-                <td>
-                  <b> ₴ {toCurrency(this.props.cart.sum)}</b>
-                </td>
-                <td/>
-              </tr>
-            </tbody>
-          </table>
+      {items}
+      <div className="row thumbnail summary">
+        <div className="col-sm-2 col-md-2 col-lg-2">&nbsp;</div>
+        <div className="col-sm-2 col-md-2 col-lg-2"><b>Итого:</b></div>
+        <div className="col-sm-2 col-md-2 col-lg-2"><b>Количество: {this.props.cart.count}</b></div>
+        <div className="col-sm-3 col-md-3 col-lg-3">
+          <b>Сумма:  ₴ {toCurrency(this.props.cart.sum)}</b>
+        </div>
+      </div>
+      <div className="row buttons">
+        <div className="col-sm-12 col-md-12 col-lg-12">
           <label>Ваш номер телефона: <input name="phone" ref="phone" value={this.state.phone} onChange={this.handleChange}/></label>
           &nbsp;
           <button className="btn btn-primary" disabled={this.state.isButtonDisable} onClick={this.order.bind(this, this.state.phone)}>Заказать</button>
-          <br/>
-          <button className="btn btn-default" onClick={this.props.closeBasket}>Закрыть корзину</button>
         </div>
       </div>
+      <div className="row buttons">
+        <button className="btn btn-default" onClick={this.props.closeBasket}>Закрыть корзину</button>
+      </div>
     </div>
+
     )
   }
 }

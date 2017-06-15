@@ -131,3 +131,16 @@
   border-top-color: #07d;
   animation: spinner .6s linear infinite;
 }
+
+.row.thumbnail {
+  margin: 2px;
+}
+
+.row.thumbnail.summary {
+  margin: 2px;
+  background: lightgray;
+}
+
+.row.buttons {
+  margin: 5px;
+}

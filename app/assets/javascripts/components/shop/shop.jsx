@@ -1,11 +1,13 @@
 const customStyles = {
   content : {
-    top                   : '50%',
+    top                   : '53%',
     left                  : '50%',
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
+    'max-height'          : '80vh',
+    'overflow-y'          : 'auto'
   }
 };
 
