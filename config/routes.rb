@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get 'shop/index'
   get 'shop/about'
+  get 'shop/delivery'
   get 'basket/order'
 
   resources :sessions, only: [:create, :new, :destroy]
