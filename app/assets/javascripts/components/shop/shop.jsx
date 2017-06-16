@@ -48,7 +48,7 @@ class Shop extends React.Component {
     const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight); //document.getElementById('list').clientHeight;
     const windowBottom = divHeight + window.pageYOffset;
     if (windowBottom >= docHeight && this.state.last_page !== true) {
-      $(".spinner").css({ display: "block" });
+      $(".spinner").css({ opacity: 1 });
       let page = this.state.page + 1;
       $.ajax({
         url: `/shop/index.json`,
@@ -57,7 +57,7 @@ class Shop extends React.Component {
         success:(response) => {
           let newItems = this.state.items.slice().concat(response.items);
           this.setState({ items: newItems, last_page: response.last_page, page: page});
-          $(".spinner").css({ display: "none" });
+          $(".spinner").css({ opacity: 0 });
         },
         error: (response) => {
           this.handleError(response.responseJSON.errors)
@@ -260,7 +260,7 @@ class Shop extends React.Component {
           </div>
           <div className="row" id="list">
             <ShopList items={this.state.items} toBasket={this.toBasket}/>
-            <span className="spinner" style={{display: 'none'}}></span>
+            <span className="spinner" style={{opacity: 0}}></span>
           </div>
         </div>
       </div>
