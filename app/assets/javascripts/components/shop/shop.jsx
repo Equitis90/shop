@@ -45,7 +45,7 @@ class Shop extends React.Component {
     const divHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
     const body = document.body;
     const html = document.documentElement;
-    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight); //document.getElementById('list').clientHeight;
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
     const windowBottom = divHeight + window.pageYOffset;
     if (windowBottom >= docHeight && this.state.last_page !== true) {
       $(".spinner").css({ opacity: 1 });
@@ -105,7 +105,7 @@ class Shop extends React.Component {
       data: {phone: phone},
       success:(response) => {
         this.closeModal();
-        this.setState({ cart: response, cart_message: 'Ваш заказ создан' });
+        this.setState({ cart: response, cart_message: I18n.t('order_created') });
         setTimeout(() => {this.setState({cart_message: ''})}, 2000);
       },
       error: (response) => {
@@ -159,7 +159,7 @@ class Shop extends React.Component {
       type: 'PUT',
       data: {add: true},
       success:(response) => {
-        this.setState({ cart: response, cart_message: 'Товар добавлен в корзину' });
+        this.setState({ cart: response, cart_message: I18n.t('item_added_to_cart') });
         setTimeout(() => {this.setState({cart_message: ''})}, 2000);
       },
       error: (response) => {
@@ -209,17 +209,17 @@ class Shop extends React.Component {
     <div className="container" id="main_container">
       <div className="row">
         <div className="col-md-3">
-          <h3 className="lead"><div className="blue">Cheap</div><div className="green">Sale</div> <br/><small className="">Покупай обдуманно!</small></h3>
+          <h3 className="lead"><div className="blue">Cheap</div><div className="green">Sale</div> <br/><small className="">{I18n.t('slogan')}</small></h3>
           <div className="list-group">
-            <ShopSorter title='Мужские' handleClick={this.handleClick.bind(this, 'men')}/>
-            <ShopSorter title='Женские' handleClick={this.handleClick.bind(this, 'women')}/>
-            <ShopSorter title='Унисекс' handleClick={this.handleClick.bind(this, 'unisex')}/>
-            <ShopSorter title='Все' handleClick={this.handleClick.bind(this, '')}/>
+            <ShopSorter title={I18n.t("men")} handleClick={this.handleClick.bind(this, 'men')}/>
+            <ShopSorter title={I18n.t("women")} handleClick={this.handleClick.bind(this, 'women')}/>
+            <ShopSorter title={I18n.t("unisex")} handleClick={this.handleClick.bind(this, 'unisex')}/>
+            <ShopSorter title={I18n.t("all")} handleClick={this.handleClick.bind(this, '')}/>
           </div>
           <div className="thumbnail">
-            <h4>Бренды</h4>
+            <h4>{I18n.t('brends')}</h4>
             <ul id="vendors">
-              <li><label><input value="all" type="checkbox" checked={this.state.all_vendors} onChange={this.handleCheckbox}/> Все</label></li>
+              <li><label><input value="all" type="checkbox" checked={this.state.all_vendors} onChange={this.handleCheckbox}/> {I18n.t('all')}</label></li>
               <li><label><input className="opt" value="Hugo Boss" type="checkbox" onChange={this.handleCheckbox}/> Hugo Boss</label></li>
               <li><label><input className="opt" value="Kenzo" type="checkbox" onChange={this.handleCheckbox}/> Kenzo</label></li>
               <li><label><input className="opt" value="Paco Rabanne" type="checkbox" onChange={this.handleCheckbox}/> Paco Rabanne</label></li>

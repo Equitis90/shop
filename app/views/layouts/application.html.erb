@@ -16,27 +16,27 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Навигация</span>
+          <span class="sr-only"><%= t(:navigation) %></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to 'Главная', root_path, {:class => 'navbar-brand', data: { turbolinks: false }} %>
+        <%= link_to t(:main), root_path, {:class => 'navbar-brand', data: { turbolinks: false }} %>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li>
-            <%= link_to 'О магазине', shop_about_path %>
+            <%= link_to t(:about), shop_about_path %>
           </li>
           <li>
-            <%= link_to 'Доставка и график работы', shop_delivery_path %>
+            <%= link_to t(:delivery), shop_delivery_path %>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if session[:current_user] %>
-            <li><%= link_to 'Редактирование товаров', admin_index_path, data: { turbolinks: false } %></li>
-            <li><%= link_to 'Выйти', session_path('logout'), method: :delete %></li>
+            <li><%= link_to t(:item_edit), admin_index_path, data: { turbolinks: false } %></li>
+            <li><%= link_to t(:exit), session_path('logout'), method: :delete %></li>
           <% end %>
         </ul>
       </div>
@@ -69,5 +69,7 @@
 
   ga('create', 'UA-91585122-2', 'auto');
   ga('send', 'pageview');
+
+  I18n.locale = "<%= I18n.locale %>";
 
 </script>

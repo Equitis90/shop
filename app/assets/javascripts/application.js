@@ -15,6 +15,8 @@
 //= require jquery_ujs
 //= require react
 //= require ./vendor/react_modal
+//= require i18n
+//= require i18n/translations
 //= require react_ujs
 //= require components
 //= require turbolinks

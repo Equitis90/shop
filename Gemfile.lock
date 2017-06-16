@@ -90,6 +90,8 @@ GEM
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     i18n (0.8.1)
+    i18n-js (3.0.0)
+      i18n (~> 0.6, >= 0.6.6)
     io-like (0.3.0)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
@@ -246,6 +248,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   factory_girl_rails
   faker
+  i18n-js
   jbuilder (~> 2.5)
   jquery-rails
   kaminari

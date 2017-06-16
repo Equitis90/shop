@@ -14,3 +14,33 @@ ru:
                blank: Не указано для какого пола товар!
             title:
                blank: Не указано название продукта!
+  main: Главная
+  about: О магазине
+  delivery: Доставка и график работы
+  item_edit: Редактирование товаров
+  exit: Выйти
+  men: Мужские
+  women: Женские
+  unisex: Унисекс
+  all: Все
+  navigation: Навигация
+  order_created: Ваш заказ создан
+  item_added_to_cart: Товар добавлен в корзину
+  slogan: Покупай обдуманно!
+  brends: 'Бренды:'
+  cart: Корзина
+  item_count: 'Товаров:'
+  cart_sum: 'На сумму:'
+  open_cart: Просмотреть корзину
+  clear_cart: Очистить корзину
+  price: 'Цена:'
+  amount: 'Количество:'
+  sum: 'Сумма:'
+  delete_from_cart: Удалить из корзины
+  summary: 'Итого:'
+  phone_number: 'Ваш номер телефона:'
+  create_order: Заказать
+  close_cart: Закрыть корзину
+  brand: 'Бренд:'
+  category: 'Категория:'
+  to_cart: В корзину

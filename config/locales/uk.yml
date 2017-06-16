@@ -1,0 +1,46 @@
+uk:
+  activerecord:
+    errors:
+      models:
+        item:
+          attributes:
+            image:
+               blank: Не обрано зображення!
+            price:
+               blank: Не вказано ціну!
+            description:
+               blank: Відсутній опис!
+            gender:
+               blank: Не вказано для якої статі товар!
+            title:
+               blank: Не вказано назву товару!
+  main: Головна
+  about: Про магазин
+  delivery: Доставка і графік роботи
+  item_edit: Редагування товарів
+  exit: Вийти
+  men: Чоловічі
+  women: Жіночі
+  unisex: Унісекс
+  all: Всі
+  navigation: Навігація
+  order_created: Ваше замовлення створено
+  item_added_to_cart: Товар додано до кошика
+  slogan: Купуй вдумливо!
+  brends: 'Бренди:'
+  cart: Кошик
+  item_count: 'Товарів:'
+  cart_sum: 'На суму:'
+  open_cart: Відкрити кошик
+  clear_cart: Видалили кошик
+  price: 'Ціна:'
+  amount: 'Кількість:'
+  sum: 'Сума:'
+  delete_from_cart: Видалити з кошика
+  summary: 'Загалом:'
+  phone_number: 'Ваш номер телефону:'
+  create_order: Замовити
+  close_cart: Закрити кошик
+  brand: 'Бренд:'
+  category: 'Категорія:'
+  to_cart: До кошика

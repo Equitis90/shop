@@ -84,16 +84,16 @@ class CartDialog extends React.Component {
             <b>{item.title}</b>
           </div>
           <div className="col-sm-2 col-md-2 col-lg-2">
-            <b>Цена: ₴ {toCurrency(item.price)}</b>
+            <b>{I18n.t('price')} ₴ {toCurrency(item.price)}</b>
           </div>
           <div className="col-sm-2 col-md-2 col-lg-2">
-            <b>Количество: {item.count}</b>
+            <b>{I18n.t('amount')} {item.count}</b>
           </div>
           <div className="col-sm-3 col-md-3 col-lg-3">
-            <b>Сумма: ₴ {toCurrency(item.sum)}</b>
+            <b>{I18n.t('sum')} ₴ {toCurrency(item.sum)}</b>
           </div>
           <div className="button-td col-sm-3 col-md-3 col-lg-3">
-            <button className="btn btn-danger" onClick={_this.deleteFromBasket.bind(this, item.id)}>Удалить из корзины</button>
+            <button className="btn btn-danger" onClick={_this.deleteFromBasket.bind(this, item.id)}>{I18n.t('delete_from_cart')}</button>
           </div>
         </div>
       )
@@ -104,21 +104,21 @@ class CartDialog extends React.Component {
       {items}
       <div className="row thumbnail summary">
         <div className="col-sm-2 col-md-2 col-lg-2">&nbsp;</div>
-        <div className="col-sm-2 col-md-2 col-lg-2"><b>Итого:</b></div>
-        <div className="col-sm-2 col-md-2 col-lg-2"><b>Количество: {this.props.cart.count}</b></div>
+        <div className="col-sm-2 col-md-2 col-lg-2"><b>{I18n.t('summary')}</b></div>
+        <div className="col-sm-2 col-md-2 col-lg-2"><b>{I18n.t('amount')} {this.props.cart.count}</b></div>
         <div className="col-sm-3 col-md-3 col-lg-3">
-          <b>Сумма:  ₴ {toCurrency(this.props.cart.sum)}</b>
+          <b>{I18n.t('sum')} ₴ {toCurrency(this.props.cart.sum)}</b>
         </div>
       </div>
       <div className="row buttons">
         <div className="col-sm-12 col-md-12 col-lg-12">
-          <label>Ваш номер телефона: <input name="phone" ref="phone" value={this.state.phone} onChange={this.handleChange}/></label>
+          <label>{I18n.t('phone_number')} <input name="phone" ref="phone" value={this.state.phone} onChange={this.handleChange}/></label>
           &nbsp;
-          <button className="btn btn-primary" disabled={this.state.isButtonDisable} onClick={this.order.bind(this, this.state.phone)}>Заказать</button>
+          <button className="btn btn-primary" disabled={this.state.isButtonDisable} onClick={this.order.bind(this, this.state.phone)}>{I18n.t('create_order')}</button>
         </div>
       </div>
       <div className="row buttons">
-        <button className="btn btn-default" onClick={this.props.closeBasket}>Закрыть корзину</button>
+        <button className="btn btn-default" onClick={this.props.closeBasket}>{I18n.t('close_cart')}</button>
       </div>
     </div>
 

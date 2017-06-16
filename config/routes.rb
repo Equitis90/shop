@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'shop/delivery'
   get 'basket/order'
 
+  post 'shop/select_locale'
+
   resources :sessions, only: [:create, :new, :destroy]
 
   get '/admin' => 'admin#index', :as => 'admin'

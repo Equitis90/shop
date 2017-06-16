@@ -22,4 +22,9 @@ class ShopController < ApplicationController
 
   def delivery
   end
+
+  def select_locale
+    session[:locale] = params[:language] == 'RU' ? :ru : :uk
+    redirect_to(:back)
+  end
 end
