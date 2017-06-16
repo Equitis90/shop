@@ -37,6 +37,7 @@ class Item extends React.Component {
   }
 
   render() {
+    const genders = {'women': 'Женские', 'men': 'Мужские', 'unisex': 'Унисекс'};
     let title = this.state.editable ? <h4><input
       ref="title"
       type="text"
@@ -48,7 +49,8 @@ class Item extends React.Component {
     let gender = this.state.editable ? <h4><select ref="gender" name="gender" defaultValue={this.props.item.gender}>
       <option value="women">Женские</option>
       <option value="men">Мужские</option>
-    </select></h4> : <h4>{this.props.item.gender === 'women' ? 'женские' : 'мужские'}</h4>;
+      <option value="unisex">Унисекс</option>
+    </select></h4> : <h4>{genders[this.props.item.gender]}</h4>;
 
     let vendor = this.state.editable ? <h4><select ref="vendor" name="vendor" defaultValue={this.props.item.vendor}>
       <option value="Hugo Boss">Hugo Boss</option>

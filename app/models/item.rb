@@ -1,8 +1,5 @@
 class Item < ApplicationRecord
-  #has_attached_file :image,
-  #                  :storage => :database,
-  #                  :column => 'image'
-  enum gender: [:women, :men]
+  enum gender: [:women, :men, :unisex]
 
-  validates :image, :description, :gender, :price, :title, presence: true
+  validates :image, :description, :gender, :price, :title, :vendor, presence: true
 end

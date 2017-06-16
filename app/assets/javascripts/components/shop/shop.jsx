@@ -209,10 +209,11 @@ class Shop extends React.Component {
     <div className="container" id="main_container">
       <div className="row">
         <div className="col-md-3">
-          <p className="lead">Название магазина</p>
+          <h3 className="lead">CheapSale <br/><small className="">Покупай обдуманно!</small></h3>
           <div className="list-group">
             <ShopSorter title='Мужские' handleClick={this.handleClick.bind(this, 'men')}/>
             <ShopSorter title='Женские' handleClick={this.handleClick.bind(this, 'women')}/>
+            <ShopSorter title='Унисекс' handleClick={this.handleClick.bind(this, 'unisex')}/>
             <ShopSorter title='Все' handleClick={this.handleClick.bind(this, '')}/>
           </div>
           <div className="thumbnail">

@@ -4,6 +4,11 @@
 @import "shop";
 @import "sessions";
 
+html body {
+  background: url( 'background.jpg' ) fixed center;
+  background-size: cover;
+}
+
 #cart {
   width: 100%;
   text-align: center;
@@ -56,3 +61,5 @@
     width: 20%;
   }
 }
+
+

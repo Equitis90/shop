@@ -114,6 +114,7 @@ class NewItem extends React.Component {
         <select name="gender" value={this.state.gender} onChange={this.handleChange}>
           <option value="women">Женские</option>
           <option value="men">Мужские</option>
+          <option value="unisex">Унисекс</option>
         </select>
         <label>Бренд:</label>
         <select name="vendor" onChange={this.handleChange}>
