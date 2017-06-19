@@ -67,7 +67,7 @@
   margin-top: 60px;
 }
 
-#vendors {
+.vendors {
   margin: 2px;
   list-style-type: none;
   label {
@@ -152,13 +152,49 @@
 .green {
   display: inline;
   color: green;
-  font-size: 170%;
-  font-family: Droid, serif;
 }
 
 .blue {
   display: inline;
   color: blue;
-  font-size: 170%;
+}
+
+#title-container {
+  -ms-transform: rotate(-3deg); /* IE 9 */
+  -webkit-transform: rotate(-3deg); /* Safari */
+  transform: rotate(-3deg);
+  font-size: 400%;
+  font-style: italic;
   font-family: Droid, serif;
+  padding-top: 10px;
+}
+
+#title-row {
+  height: 200px;
+  background: url( 'title_background.jpg' );
+  background-position: calc(100%) calc(50%);
+  border: solid 2px cornflowerblue;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#delivery-image {
+  height: 162px;
+  width: 310px;
+  background: url( 'delivery.png' );
+  background-size: cover;
+  margin: 20px;
+}
+
+.lead {
+  padding-left: 60px;
+  small {
+    font-size: 100%;
+    color: cornflowerblue;
+  }
+}
+
+.list-group-item {
+  display: inline-block;
+  width: 25%;
+  padding-right: -10px;
 }

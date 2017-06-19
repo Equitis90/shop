@@ -26,7 +26,7 @@ uk:
   navigation: Навігація
   order_created: Ваше замовлення створено
   item_added_to_cart: Товар додано до кошика
-  slogan: Купуй вдумливо!
+  slogan: Лови хвилю!
   brends: 'Бренди:'
   cart: Кошик
   item_count: 'Товарів:'
@@ -44,3 +44,5 @@ uk:
   brand: 'Бренд:'
   category: 'Категорія:'
   to_cart: До кошика
+  back_to_top: Наверх
+  elite: 'Елітні:'

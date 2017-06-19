@@ -188,7 +188,7 @@ class Shop extends React.Component {
         type: 'get',
         data: {gender: this.state.gender, vendor: this.state.vendor},
         success:(response) => {
-          this.setState({ items: response.items , last_page: response.last_page, page: 0})
+          this.setState({ items: response.items , last_page: response.last_page, page: 1})
         },
         error: (response) => {
           this.handleError(response.responseJSON.errors)
@@ -208,17 +208,22 @@ class Shop extends React.Component {
     return (
     <div className="container" id="main_container">
       <div className="row">
-        <div className="col-md-3">
-          <h3 className="lead"><div className="blue">Cheap</div><div className="green">Sale</div> <br/><small className="">{I18n.t('slogan')}</small></h3>
-          <div className="list-group">
-            <ShopSorter title={I18n.t("men")} handleClick={this.handleClick.bind(this, 'men')}/>
-            <ShopSorter title={I18n.t("women")} handleClick={this.handleClick.bind(this, 'women')}/>
-            <ShopSorter title={I18n.t("unisex")} handleClick={this.handleClick.bind(this, 'unisex')}/>
-            <ShopSorter title={I18n.t("all")} handleClick={this.handleClick.bind(this, '')}/>
-          </div>
+        <div id="title-row" className="col-sm-12 col-md-12 col-lg-12">
+          <h3 className="lead left"><div id="title-container"><div className="blue">Cheap</div><div className="green">Sale</div></div><small>{I18n.t('slogan')}</small></h3>
+          <div className="right" id="delivery-image"/>
+        </div>
+        <div className="list-group">
+          <ShopSorter title={I18n.t("men")} handleClick={this.handleClick.bind(this, 'men')}/>
+          <ShopSorter title={I18n.t("women")} handleClick={this.handleClick.bind(this, 'women')}/>
+          <ShopSorter title={I18n.t("unisex")} handleClick={this.handleClick.bind(this, 'unisex')}/>
+          <ShopSorter title={I18n.t("all")} handleClick={this.handleClick.bind(this, '')}/>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3 col-md-3 col-lg-3">
           <div className="thumbnail">
             <h4>{I18n.t('brends')}</h4>
-            <ul id="vendors">
+            <ul className="vendors">
               <li><label><input value="all" type="checkbox" checked={this.state.all_vendors} onChange={this.handleCheckbox}/> {I18n.t('all')}</label></li>
               <li><label><input className="opt" value="Hugo Boss" type="checkbox" onChange={this.handleCheckbox}/> Hugo Boss</label></li>
               <li><label><input className="opt" value="Kenzo" type="checkbox" onChange={this.handleCheckbox}/> Kenzo</label></li>
@@ -231,7 +236,6 @@ class Shop extends React.Component {
               <li><label><input className="opt" value="Moschino" type="checkbox" onChange={this.handleCheckbox}/> Moschino</label></li>
               <li><label><input className="opt" value="Yves Saint Laurent" type="checkbox" onChange={this.handleCheckbox}/> Yves Saint Laurent</label></li>
               <li><label><input className="opt" value="Nina Ricci" type="checkbox" onChange={this.handleCheckbox}/> Nina Ricci</label></li>
-              <li><label><input className="opt" value="Tom Ford" type="checkbox" onChange={this.handleCheckbox}/> Tom Ford</label></li>
               <li><label><input className="opt" value="Versace" type="checkbox" onChange={this.handleCheckbox}/> Versace</label></li>
               <li><label><input className="opt" value="Roberto Cavalli" type="checkbox" onChange={this.handleCheckbox}/> Roberto Cavalli</label></li>
               <li><label><input className="opt" value="Lancome" type="checkbox" onChange={this.handleCheckbox}/> Lancome</label></li>
@@ -248,6 +252,11 @@ class Shop extends React.Component {
               <li><label><input className="opt" value="Armand Basi" type="checkbox" onChange={this.handleCheckbox}/> Armand Basi</label></li>
               <li><label><input className="opt" value="Armani" type="checkbox" onChange={this.handleCheckbox}/> Armani</label></li>
               <li><label><input className="opt" value="Vin Diesel" type="checkbox" onChange={this.handleCheckbox}/> Vin Diesel</label></li>
+            </ul>
+            <h4>{I18n.t('elite')}</h4>
+            <ul className="vendors">
+              <li><label><input className="opt" value="Tom Ford" type="checkbox" onChange={this.handleCheckbox}/> Tom Ford</label></li>
+              <li><label><input className="opt" value="Montale" type="checkbox" onChange={this.handleCheckbox}/> Montale</label></li>
             </ul>
           </div>
           <Cart cart={this.state.cart} openBasket={this.openModal} deleteBasket={this.deleteBasket}/>

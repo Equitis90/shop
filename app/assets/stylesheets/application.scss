@@ -62,4 +62,15 @@ html body {
   }
 }
 
+.navbar.navbar-inverse.navbar-fixed-top {
+  background-color: #5b4be8;
+  border-color: lightblue;
+}
 
+.navbar-inverse .navbar-brand {
+  color: wheat;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: wheat;
+}

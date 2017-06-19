@@ -81,6 +81,7 @@ class Item extends React.Component {
       <option value="Armand Basi">Armand Basi</option>
       <option value="Armani">Armani</option>
       <option value="Vin Diesel">Vin Diesel</option>
+      <option value="Montale">Montale</option>
     </select></h4> : <h4>{this.props.item.vendor}</h4>;
 
     let img = this.state.editable ? <h4>

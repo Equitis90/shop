@@ -147,6 +147,7 @@ class NewItem extends React.Component {
           <option value="Armand Basi">Armand Basi</option>
           <option value="Armani">Armani</option>
           <option value="Vin Diesel">Vin Diesel</option>
+          <option value="Montale">Montale</option>
         </select>
         <br/>
         <label>Изображение:
