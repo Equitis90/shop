@@ -214,7 +214,7 @@ class Shop extends React.Component {
     <div className="container" id="main_container">
       <div className="row">
         <div id="title-row" className="col-sm-12 col-md-12 col-lg-12">
-          <h3 className="lead left"><div id="title-container"><div className="blue">Cheap</div><div className="green">Sale</div></div><small>{I18n.t('slogan')}</small></h3>
+          <h3 className="lead left"><div id="title-container"><div className="blue">Cheap</div><div className="green">Sale</div></div><div id="slogan">{I18n.t('slogan')}</div></h3>
           <div className="right" id="delivery-image"/>
         </div>
         <div className="list-group">

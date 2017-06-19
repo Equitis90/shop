@@ -138,8 +138,7 @@
   -webkit-transform: rotate(-3deg); /* Safari */
   transform: rotate(-3deg);
   font-size: 400%;
-  font-style: italic;
-  font-family: Droid, serif;
+  font-family: 'Indie Flower', cursive;
   padding-top: 10px;
 }
 
@@ -149,6 +148,12 @@
   background-position: calc(100%) calc(50%);
   border: solid 2px cornflowerblue;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  .right {
+    -ms-transform: rotate(-13deg); /* IE 9 */
+    -webkit-transform: rotate(-13deg); /* Safari */
+    transform: rotate(-13deg);
+    margin: 60px 0;
+  }
 }
 
 #delivery-image {
@@ -161,8 +166,12 @@
 
 .lead {
   padding-left: 60px;
-  small {
-    font-size: 100%;
+  #slogan {
+    -ms-transform: rotate(-3deg); /* IE 9 */
+    -webkit-transform: rotate(-3deg); /* Safari */
+    transform: rotate(-3deg);
+    font-size: 160%;
+    font-family: 'Lobster', cursive;
     color: lawngreen;
   }
 }
@@ -181,7 +190,7 @@ a.list-group-item {
 #vendors-container {
   background: rgba(255, 255, 255, 0.4);
   h4 {
-    color: green;
+    color: darkgoldenrod;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   }
   .vendors {
