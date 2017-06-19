@@ -15,7 +15,9 @@ class Items extends React.Component {
     this.state = {
       items: [],
       error_message: '',
-      modalIsOpen: false
+      modalIsOpen: false,
+      last_page: false,
+      page: 1
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,6 +30,37 @@ class Items extends React.Component {
     this.closeError = this.closeError.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+
+  handleScroll() {
+    const divHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
+    const windowBottom = divHeight + window.pageYOffset;
+    if (window.pageYOffset > 0) {
+      $("#scroll-top").css({ opacity: 1 });
+    } else {
+      $("#scroll-top").css({ opacity: 0 });
+    }
+    if (windowBottom >= docHeight && this.state.last_page !== true) {
+      $(".spinner").css({ opacity: 1 });
+      let page = this.state.page + 1;
+      $.ajax({
+        url: `/items.json`,
+        type: 'get',
+        data: {page: page },
+        success:(response) => {
+          let newItems = this.state.items.slice().concat(response.items);
+          this.setState({ items: newItems, last_page: response.last_page, page: page});
+          $(".spinner").css({ opacity: 0 });
+        },
+        error: (response) => {
+          this.handleError(response.responseJSON.errors)
+        }
+      });
+    }
   }
 
   openModal() {
@@ -79,16 +112,26 @@ class Items extends React.Component {
     this.setState({ items: newItems });
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
   componentWillMount() {
     ReactModal.setAppElement('body');
   }
 
   componentDidMount() {
-    $.getJSON('/items.json', (response) => {
-      this.setState({ items: response })
-    })
-    .fail(function(response) {
-      this.handleError(response.responseJSON.errors)
+    window.addEventListener("scroll", this.handleScroll);
+    $.ajax({
+      url: `/items.json`,
+      type: 'get',
+      data: {page: 1 },
+      success:(response) => {
+        this.setState({ items: response.items, last_page: response.last_page });
+      },
+      error: (response) => {
+        this.handleError(response.responseJSON.errors)
+      }
     });
   }
 
@@ -126,6 +169,7 @@ class Items extends React.Component {
         > <NewItem title="" description="" price="0.00" gender="women" handleSubmit={this.handleSubmit} handleError={this.handleError}/>
         </ReactModal>
         <AllItems items={this.state.items} handleDelete={this.handleDelete} onUpdate={this.handleUpdate}/>
+        <span className="spinner" style={{opacity: 0}}></span>
       </div>
     );
   }

@@ -5,7 +5,7 @@ class ShopElement extends React.Component {
 
   render() {
     return (
-      <div className="thumbnail">
+      <div className="thumbnail item">
         <div className="caption">
           <img src={this.props.item.image} alt="" height={200} width={320}/>
           <h4>{this.props.item.title}</h4>

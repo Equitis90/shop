@@ -81,3 +81,28 @@ html body {
   right: 30px;
   z-index: 1000;
 }
+
+.spinner {
+  position: relative;
+  margin: 10px;
+  left: 50%;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 90%;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  margin-left: -40px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  border-top-color: #07d;
+  animation: spinner .6s linear infinite;
+}

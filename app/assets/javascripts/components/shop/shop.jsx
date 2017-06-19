@@ -226,7 +226,7 @@ class Shop extends React.Component {
       </div>
       <div className="row">
         <div className="col-sm-3 col-md-3 col-lg-3">
-          <div className="thumbnail">
+          <div className="thumbnail" id="vendors-container">
             <h4>{I18n.t('brends')}</h4>
             <ul className="vendors">
               <li><label><input value="all" type="checkbox" checked={this.state.all_vendors} onChange={this.handleCheckbox}/> {I18n.t('all')}</label></li>

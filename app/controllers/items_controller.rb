@@ -4,7 +4,12 @@ class ItemsController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Item.order(:id)
+    page = params[:page] || 1
+    items = Item.page(page).per(20).order(:id)
+    last_page = items.last_page?
+    @resp = {items: items, last_page: last_page}
+
+    respond_with @resp
   end
 
   def update
