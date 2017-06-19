@@ -47,6 +47,11 @@ class Shop extends React.Component {
     const html = document.documentElement;
     const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
     const windowBottom = divHeight + window.pageYOffset;
+    if (window.pageYOffset > 0) {
+      $("#scroll-top").css({ opacity: 1 });
+    } else {
+      $("#scroll-top").css({ opacity: 0 });
+    }
     if (windowBottom >= docHeight && this.state.last_page !== true) {
       $(".spinner").css({ opacity: 1 });
       let page = this.state.page + 1;
