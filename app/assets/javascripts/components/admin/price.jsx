@@ -20,7 +20,7 @@ class Price extends React.Component {
     value = value.replace(/^0+(.*)$/,'0$1');
     // remove leading zero
     value = value.replace(/^0([^.].*)$/,'$1');
-    this.setState({price: value})
+    this.setState({price: value});
     this.props.handleChangePrice(value);
   }
 

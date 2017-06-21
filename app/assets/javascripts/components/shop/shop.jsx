@@ -6,8 +6,8 @@ const customStyles = {
     bottom                : 'auto',
     marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
-    'max-height'          : '80vh',
-    'overflow-y'          : 'auto'
+    maxHeight             : '80vh',
+    overflowY             : 'auto'
   }
 };
 
@@ -158,17 +158,22 @@ class Shop extends React.Component {
     });
   }
 
-  toBasket(id) {
+  toBasket(id, action, amount) {
     $.ajax({
       url: `/basket/${id}`,
       type: 'PUT',
-      data: {add: true},
+      data: {add: true, amount: amount},
       success:(response) => {
-        this.setState({ cart: response, cart_message: I18n.t('item_added_to_cart') });
-        setTimeout(() => {this.setState({cart_message: ''})}, 2000);
+        if(action === 'add') {
+          this.setState({ cart: response, cart_message: I18n.t('item_added_to_cart') });
+          setTimeout(() => {this.setState({cart_message: ''})}, 2000);
+        } else if (action === 'order') {
+          this.setState({ cart: response });
+          this.openModal();
+        }
       },
       error: (response) => {
-        //alert(JSON.stringify(response));
+        alert(JSON.stringify(response));
         this.handleError(response.responseJSON.errors)
       }
     });

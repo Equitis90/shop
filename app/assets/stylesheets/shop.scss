@@ -24,6 +24,7 @@
         height: 85px;
         position: relative;
         width: auto;
+        overflow: hidden;
       }
 
       :hover {
@@ -203,4 +204,10 @@ a.list-group-item {
 
 #cart {
   background: rgba(255, 255, 255, 0.4);
+}
+
+.order {
+  position: relative;
+  z-index: 100;
+  background: bisque;
 }

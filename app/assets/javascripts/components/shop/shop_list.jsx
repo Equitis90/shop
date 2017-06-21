@@ -5,8 +5,8 @@ class ShopList extends React.Component {
     this.toBasket = this.toBasket.bind(this);
   }
 
-  toBasket(id) {
-    this.props.toBasket(id)
+  toBasket(id, action, amount) {
+    this.props.toBasket(id, action, amount)
   }
 
   render() {

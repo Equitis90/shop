@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.3.4'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -22,6 +23,7 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Jquery library
 gem 'jquery-rails'
 # Use react as the JavaScript library
 gem 'react-rails'
@@ -34,23 +36,33 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 #gem 'bcrypt', '~> 3.1.7'
 
+# respond_with for JSON requests
 gem 'responders'
+# Pagination for infinite scroll
 gem 'kaminari'
 # Use Paperclip for image handle
 #gem "paperclip", "~> 5.0.0"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# I18n in javascript with i18njs
 gem 'i18n-js'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # Using rspec for tests
   gem 'rspec-rails', '~> 3.5.0'
+  # Feature specs with capybara
   gem 'capybara'
+  # Provide fake data with faker
   gem 'faker'
+  # Fixures generation
   gem 'factory_girl_rails'
+  # Using for cantroller testing
   gem 'rails-controller-testing'
+  # Driver for capybara
   gem 'selenium-webdriver'
+  # Using chrome by default instead of firefox
   gem 'chromedriver-helper'
 end
 
