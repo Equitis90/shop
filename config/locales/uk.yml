@@ -26,7 +26,7 @@ uk:
   navigation: Навігація
   order_created: Ваше замовлення створено
   item_added_to_cart: Товар додано до кошика
-  slogan: Лови хвилю!
+  slogan: Лови хвилю - купуй ДЕШЕВШЕ!
   brends: 'Бренди:'
   cart: Кошик
   item_count: 'Товарів:'
@@ -50,3 +50,7 @@ uk:
   add_and_proceed: Додати та продовжити
   amount: Кількість
   cancel: Відмінити
+  schedule: 'Графік роботи Пн – Пт: 9:00 - 18:00   Сб, Нд : 10:00 - 16:00'
+  callback: Передзвонити
+  name: "Ваше ім'я:"
+  callback_received: 'Запит на зворотній виклик отримано'

@@ -1,12 +1,18 @@
 class ShopController < ApplicationController
   def index
     page = params[:page] || 1
-    @items = Item.page(page).per(12).order(:id)
-    if params[:vendor] && params[:vendor] != []
-      @items = @items.where(vendor: params[:vendor])
-    end
-    if params[:gender] && params[:gender] != ''
-      @items = @items.where(gender: params[:gender])
+    @vendor = []
+    if params[:brand] && Item.where(vendor: params[:brand]).first
+      @items = Item.where(vendor: params[:brand]).page(1).per(12).order(:id)
+      @vendor = [params[:brand]]
+    else
+      @items = Item.page(page).per(12).order(:id)
+      if params[:vendor] && params[:vendor] != []
+        @items = @items.where(vendor: params[:vendor])
+      end
+      if params[:gender] && params[:gender] != ''
+        @items = @items.where(gender: params[:gender])
+      end
     end
 
     @last_page = @items.last_page?
@@ -26,5 +32,9 @@ class ShopController < ApplicationController
   def select_locale
     session[:locale] = params[:language] == 'RU' ? :ru : :uk
     redirect_to(:back)
+  end
+
+  def callback
+    OrderMailer.callback_mail(params[:phone], params[:name]).deliver_now
   end
 end

@@ -21,11 +21,15 @@ class Shop extends React.Component {
       cart: this.props.cart,
       cart_message: '',
       modalIsOpen: false,
+      modal2IsOpen: false,
       gender: '',
-      vendor: [],
-      all_vendors: true,
+      vendor: this.props.vendor,
+      all_vendors: this.props.vendor.length === 0,
       page: 1,
-      last_page: this.props.last_page
+      last_page: this.props.last_page,
+      isButtonDisable: true,
+      name: '',
+      phone: ''
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -35,10 +39,57 @@ class Shop extends React.Component {
     this.deleteBasket = this.deleteBasket.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.openModal2 = this.openModal2.bind(this);
+    this.closeModal2 = this.closeModal2.bind(this);
     this.deleteFromBasket = this.deleteFromBasket.bind(this);
     this.order = this.order.bind(this);
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
+    this.buttonCheck = this.buttonCheck.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.callBack = this.callBack.bind(this);
+  }
+
+  callBack() {
+    $.ajax({
+      url: `/shop/callback`,
+      type: 'GET',
+      data: {phone: this.state.phone, name: this.state.name},
+      success:() => {
+        this.closeModal2();
+        this.setState({ cart_message: I18n.t('callback_received') });
+        setTimeout(() => {this.setState({cart_message: ''})}, 2000);
+      },
+      error: (response) => {
+        this.handleError(response.responseJSON.errors)
+      }
+    });
+  }
+
+  handleChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  buttonCheck() {
+    let state = this.state;
+    let buttonDisable = true;
+    if (state.phone !== undefined &&
+      state.phone !== "" && state.phone.length >= 10 &&
+      state.name !== undefined &&
+      state.name !== ""
+    ) {
+      buttonDisable = false
+    }
+    if (buttonDisable !== state.isButtonDisable) {
+      this.setState({
+        isButtonDisable: buttonDisable
+      })
+    }
   }
 
   handleScroll() {
@@ -73,6 +124,13 @@ class Shop extends React.Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
+    if (this.state.vendor !== []) {
+      let arrayLength = this.state.vendor.length;
+      for (var i = 0; i < arrayLength; i++) {
+        vd = this.state.vendor[i];
+        $('input[name="'+vd+'"]').prop('checked', true);
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -99,7 +157,7 @@ class Shop extends React.Component {
         newVendor.splice(index, 1);
       }
     }
-
+    history.replaceState('perfumes.net.ua', 'CheapSale', '/');
     this.setState({vendor: newVendor, all_vendors: all_vendors})
   }
 
@@ -143,6 +201,14 @@ class Shop extends React.Component {
 
   closeModal() {
     this.setState({modalIsOpen: false});
+  }
+
+  openModal2() {
+    this.setState({modal2IsOpen: true});
+  }
+
+  closeModal2() {
+    this.setState({modal2IsOpen: false});
   }
 
   deleteBasket() {
@@ -192,6 +258,7 @@ class Shop extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    this.buttonCheck();
     if(prevState.gender !== this.state.gender || prevState.vendor !== this.state.vendor) {
       $.ajax({
         url: `/shop/index.json`,
@@ -218,6 +285,12 @@ class Shop extends React.Component {
     return (
     <div className="container" id="main_container">
       <div className="row">
+        <div id="schedule" className="thumbnail col-sm-12 col-md-12 col-lg-12">
+          <h3>{I18n.t('schedule')}</h3>
+          <button id="callback" className="btn btn-primary" onClick={this.openModal2}>{I18n.t('callback')}</button>
+        </div>
+      </div>
+      <div className="row">
         <div id="title-row" className="col-sm-12 col-md-12 col-lg-12">
           <h3 className="lead left"><div id="title-container"><div className="blue">Cheap</div><div className="green">Sale</div></div><div id="slogan">{I18n.t('slogan')}</div></h3>
           <div className="right" id="delivery-image"/>
@@ -235,38 +308,38 @@ class Shop extends React.Component {
             <h4>{I18n.t('brends')}</h4>
             <ul className="vendors">
               <li><label><input value="all" type="checkbox" checked={this.state.all_vendors} onChange={this.handleCheckbox}/> {I18n.t('all')}</label></li>
-              <li><label><input className="opt" value="Hugo Boss" type="checkbox" onChange={this.handleCheckbox}/> Hugo Boss</label></li>
-              <li><label><input className="opt" value="Kenzo" type="checkbox" onChange={this.handleCheckbox}/> Kenzo</label></li>
-              <li><label><input className="opt" value="Paco Rabanne" type="checkbox" onChange={this.handleCheckbox}/> Paco Rabanne</label></li>
-              <li><label><input className="opt" value="Gucci" type="checkbox" onChange={this.handleCheckbox}/> Gucci</label></li>
-              <li><label><input className="opt" value="Trussardi" type="checkbox" onChange={this.handleCheckbox}/> Trussardi</label></li>
-              <li><label><input className="opt" value="Lanvin" type="checkbox" onChange={this.handleCheckbox}/> Lanvin</label></li>
-              <li><label><input className="opt" value="Bond" type="checkbox" onChange={this.handleCheckbox}/> Bond</label></li>
-              <li><label><input className="opt" value="Givenchy" type="checkbox" onChange={this.handleCheckbox}/> Givenchy</label></li>
-              <li><label><input className="opt" value="Moschino" type="checkbox" onChange={this.handleCheckbox}/> Moschino</label></li>
-              <li><label><input className="opt" value="Yves Saint Laurent" type="checkbox" onChange={this.handleCheckbox}/> Yves Saint Laurent</label></li>
-              <li><label><input className="opt" value="Nina Ricci" type="checkbox" onChange={this.handleCheckbox}/> Nina Ricci</label></li>
-              <li><label><input className="opt" value="Versace" type="checkbox" onChange={this.handleCheckbox}/> Versace</label></li>
-              <li><label><input className="opt" value="Roberto Cavalli" type="checkbox" onChange={this.handleCheckbox}/> Roberto Cavalli</label></li>
-              <li><label><input className="opt" value="Lancome" type="checkbox" onChange={this.handleCheckbox}/> Lancome</label></li>
-              <li><label><input className="opt" value="Dolce&Gabbana" type="checkbox" onChange={this.handleCheckbox}/> Dolce&Gabbana</label></li>
-              <li><label><input className="opt" value="Dior" type="checkbox" onChange={this.handleCheckbox}/> Dior</label></li>
-              <li><label><input className="opt" value="Chanel" type="checkbox" onChange={this.handleCheckbox}/> Chanel</label></li>
-              <li><label><input className="opt" value="Carolina Herrera" type="checkbox" onChange={this.handleCheckbox}/> Carolina Herrera</label></li>
-              <li><label><input className="opt" value="Calvin Klein" type="checkbox" onChange={this.handleCheckbox}/> Calvin Klein</label></li>
-              <li><label><input className="opt" value="Cacharel" type="checkbox" onChange={this.handleCheckbox}/> Cacharel</label></li>
-              <li><label><input className="opt" value="Burberry" type="checkbox" onChange={this.handleCheckbox}/> Burberry</label></li>
-              <li><label><input className="opt" value="Beyonce" type="checkbox" onChange={this.handleCheckbox}/> Beyonce</label></li>
-              <li><label><input className="opt" value="Bvlgari" type="checkbox" onChange={this.handleCheckbox}/> Bvlgari</label></li>
-              <li><label><input className="opt" value="Angel Schlesser" type="checkbox" onChange={this.handleCheckbox}/> Angel Schlesser</label></li>
-              <li><label><input className="opt" value="Armand Basi" type="checkbox" onChange={this.handleCheckbox}/> Armand Basi</label></li>
-              <li><label><input className="opt" value="Armani" type="checkbox" onChange={this.handleCheckbox}/> Armani</label></li>
-              <li><label><input className="opt" value="Vin Diesel" type="checkbox" onChange={this.handleCheckbox}/> Vin Diesel</label></li>
+              <li><label><input className="opt" name="Hugo Boss" value="Hugo Boss" type="checkbox" onChange={this.handleCheckbox}/> Hugo Boss</label></li>
+              <li><label><input className="opt" name="Kenzo" value="Kenzo" type="checkbox" onChange={this.handleCheckbox}/> Kenzo</label></li>
+              <li><label><input className="opt" name="Paco Rabanne" value="Paco Rabanne" type="checkbox" onChange={this.handleCheckbox}/> Paco Rabanne</label></li>
+              <li><label><input className="opt" name="Gucci" value="Gucci" type="checkbox" onChange={this.handleCheckbox}/> Gucci</label></li>
+              <li><label><input className="opt" name="Trussardi" value="Trussardi" type="checkbox" onChange={this.handleCheckbox}/> Trussardi</label></li>
+              <li><label><input className="opt" name="Lanvin" value="Lanvin" type="checkbox" onChange={this.handleCheckbox}/> Lanvin</label></li>
+              <li><label><input className="opt" name="Bond" value="Bond" type="checkbox" onChange={this.handleCheckbox}/> Bond</label></li>
+              <li><label><input className="opt" name="Givenchy" value="Givenchy" type="checkbox" onChange={this.handleCheckbox}/> Givenchy</label></li>
+              <li><label><input className="opt" name="Moschino" value="Moschino" type="checkbox" onChange={this.handleCheckbox}/> Moschino</label></li>
+              <li><label><input className="opt" name="Yves Saint Laurent" value="Yves Saint Laurent" type="checkbox" onChange={this.handleCheckbox}/> Yves Saint Laurent</label></li>
+              <li><label><input className="opt" name="Nina Ricci" value="Nina Ricci" type="checkbox" onChange={this.handleCheckbox}/> Nina Ricci</label></li>
+              <li><label><input className="opt" name="Versace" value="Versace" type="checkbox" onChange={this.handleCheckbox}/> Versace</label></li>
+              <li><label><input className="opt" name="Roberto Cavalli" value="Roberto Cavalli" type="checkbox" onChange={this.handleCheckbox}/> Roberto Cavalli</label></li>
+              <li><label><input className="opt" name="Lancome" value="Lancome" type="checkbox" onChange={this.handleCheckbox}/> Lancome</label></li>
+              <li><label><input className="opt" name="Dolce&Gabbana" value="Dolce&Gabbana" type="checkbox" onChange={this.handleCheckbox}/> Dolce&Gabbana</label></li>
+              <li><label><input className="opt" name="Dior" value="Dior" type="checkbox" onChange={this.handleCheckbox}/> Dior</label></li>
+              <li><label><input className="opt" name="Chanel" value="Chanel" type="checkbox" onChange={this.handleCheckbox}/> Chanel</label></li>
+              <li><label><input className="opt" name="Carolina Herrera" value="Carolina Herrera" type="checkbox" onChange={this.handleCheckbox}/> Carolina Herrera</label></li>
+              <li><label><input className="opt" name="Calvin Klein" value="Calvin Klein" type="checkbox" onChange={this.handleCheckbox}/> Calvin Klein</label></li>
+              <li><label><input className="opt" name="Cacharel" value="Cacharel" type="checkbox" onChange={this.handleCheckbox}/> Cacharel</label></li>
+              <li><label><input className="opt" name="Burberry" value="Burberry" type="checkbox" onChange={this.handleCheckbox}/> Burberry</label></li>
+              <li><label><input className="opt" name="Beyonce" value="Beyonce" type="checkbox" onChange={this.handleCheckbox}/> Beyonce</label></li>
+              <li><label><input className="opt" name="Bvlgari" value="Bvlgari" type="checkbox" onChange={this.handleCheckbox}/> Bvlgari</label></li>
+              <li><label><input className="opt" name="Angel Schlesser" value="Angel Schlesser" type="checkbox" onChange={this.handleCheckbox}/> Angel Schlesser</label></li>
+              <li><label><input className="opt" name="Armand Basi" value="Armand Basi" type="checkbox" onChange={this.handleCheckbox}/> Armand Basi</label></li>
+              <li><label><input className="opt" name="Armani" value="Armani" type="checkbox" onChange={this.handleCheckbox}/> Armani</label></li>
+              <li><label><input className="opt" name="Vin Diesel" value="Vin Diesel" type="checkbox" onChange={this.handleCheckbox}/> Vin Diesel</label></li>
             </ul>
             <h4>{I18n.t('elite')}</h4>
             <ul className="vendors">
-              <li><label><input className="opt" value="Tom Ford" type="checkbox" onChange={this.handleCheckbox}/> Tom Ford</label></li>
-              <li><label><input className="opt" value="Montale" type="checkbox" onChange={this.handleCheckbox}/> Montale</label></li>
+              <li><label><input className="opt" name="Tom Ford" value="Tom Ford" type="checkbox" onChange={this.handleCheckbox}/> Tom Ford</label></li>
+              <li><label><input className="opt" name="Montale" value="Montale" type="checkbox" onChange={this.handleCheckbox}/> Montale</label></li>
             </ul>
           </div>
           <Cart cart={this.state.cart} openBasket={this.openModal} deleteBasket={this.deleteBasket}/>
@@ -295,6 +368,20 @@ class Shop extends React.Component {
         deleteFromBasket={this.deleteFromBasket}
         order={this.order}
       />
+      </ReactModal>
+      <ReactModal
+        isOpen={this.state.modal2IsOpen}
+        onRequestClose={this.closeModal2}
+        style={customStyles}
+        contentLabel="Calback dialog"
+      > <div>
+        <div>
+          <label className="block">{I18n.t('name')}</label> <input className="block" name="name" value={this.state.name} onChange={this.handleChange}/>
+          <label className="block">{I18n.t('phone_number')}</label> <input className="block" name="phone" value={this.state.phone} onChange={this.handleChange}/>
+        </div>
+        <button className="btn btn-primary" disabled={this.state.isButtonDisable} onClick={this.callBack}>{I18n.t('callback')}</button>&nbsp;
+        <button className="btn btn-danger" onClick={this.closeModal2}>{I18n.t('cancel')}</button>
+      </div>
       </ReactModal>
       <React.addons.CSSTransitionGroup transitionName="anim"
                                        transitionEnterTimeout={300}

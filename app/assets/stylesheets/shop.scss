@@ -139,7 +139,6 @@
   transform: rotate(-3deg);
   font-size: 400%;
   font-family: 'Indie Flower', cursive;
-  padding-top: 10px;
 }
 
 #title-row {
@@ -210,4 +209,28 @@ a.list-group-item {
   position: relative;
   z-index: 100;
   background: bisque;
+}
+
+#schedule {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  h3 {
+    float: left;
+    width: 60%;
+    font-family: 'Lobster', cursive;
+    color: lawngreen;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    margin: 5px;
+  }
+  #callback {
+    float: right;
+    width: 20%;
+    margin-right: 10px;
+  }
+}
+
+.block {
+  display: block;
+  margin-bottom: 7px;
+  width: 100%;
 }
