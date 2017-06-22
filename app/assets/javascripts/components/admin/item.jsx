@@ -22,7 +22,8 @@ class Item extends React.Component {
       let gender = this.refs.gender.value;
       let vendor = this.refs.vendor.value;
       let image = this.state.image;
-      let item = {id: id, title: title, description: description, price: price, gender: gender, image: image, vendor: vendor};
+      let stock = this.refs.stock.checked;
+      let item = {id: id, title: title, description: description, price: price, gender: gender, image: image, vendor: vendor, stock: stock};
       this.props.handleUpdate(item)
     }
     this.setState({editable: !this.state.editable})
@@ -38,6 +39,8 @@ class Item extends React.Component {
 
   render() {
     const genders = {'women': 'Женские', 'men': 'Мужские', 'unisex': 'Унисекс'};
+    let stock = this.state.editable ? <h4><input ref="stock" defaultChecked={this.props.item.stock} type="checkbox" /></h4> :
+      <h4>{this.props.item.stock ? 'В наличии' : 'Закончились'}</h4>;
     let title = this.state.editable ? <h4><input
       ref="title"
       type="text"
@@ -101,6 +104,7 @@ class Item extends React.Component {
         {price}
         {gender}
         {vendor}
+        {stock}
         {img}
         <div>
           <button className="btn btn-primary" onClick={this.handleEdit}> {this.state.editable ? 'Сохранить' : 'Редактировать' } </button>

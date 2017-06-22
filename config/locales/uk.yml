@@ -54,3 +54,5 @@ uk:
   callback: Передзвонити
   name: "Ваше ім'я:"
   callback_received: 'Запит на зворотній виклик отримано'
+  instock: В наявності
+  outofstock: Закінчилися

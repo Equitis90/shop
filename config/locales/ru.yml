@@ -54,3 +54,5 @@ ru:
   callback: Перезвонить
   name: 'Ваше имя:'
   callback_received: 'Запрос на обратный звонок получен'
+  instock: В наличии
+  outofstock: Закончились

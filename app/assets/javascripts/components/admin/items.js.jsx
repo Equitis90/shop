@@ -95,7 +95,7 @@ class Items extends React.Component {
       data: {item: item},
       success:() => {
         $.getJSON('/items.json', (response) => {
-          this.setState({ items: response })
+          this.setState({ items: response.items })
         })
         .fail(function(response) {
           this.handleError(response.responseJSON.errors)
@@ -136,7 +136,8 @@ class Items extends React.Component {
   }
 
   handleSubmit(item) {
-    let newState = this.state.items.concat(item);
+    let newState = this.state.items;
+    newState.unshift(item);
     this.setState({ items: newState });
     this.closeModal();
   }

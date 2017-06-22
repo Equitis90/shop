@@ -53,6 +53,7 @@ class ShopElement extends React.Component {
           <h4 className="priceh"><div className="left">{I18n.t('price')} </div><div className="right">₴{toCurrency(this.props.item.price)}</div></h4>
           <p>{I18n.t('brand')} {this.props.item.vendor}</p>
           <p>{I18n.t('category')} {I18n.t(this.props.item.gender)}</p>
+          {this.props.item.stock ? <p style={{color: 'green'}}>{I18n.t('instock')}</p> : <p style={{color: 'red'}}>{I18n.t('outofstock')}</p>}
           {button}
           <p className="description">{this.props.item.description}</p>
         </div>

@@ -28,12 +28,6 @@ class AllItems extends React.Component {
 
     return(
       <div className="all_items">
-        <h4>Название</h4>
-        <h4>Описание</h4>
-        <h4>Цена</h4>
-        <h4>Мужские/Женские</h4>
-        <h4>Бренд</h4>
-        <h4>Изображение</h4>
         {items}
       </div>
     )

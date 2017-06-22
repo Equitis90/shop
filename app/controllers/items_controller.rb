@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   def update
     item = Item.find(params["id"])
     item.update_attributes(item_params)
-    respond_with item, json: item
+    respond_with item
   end
 
   def create
@@ -29,6 +29,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:id, :title, :description, :price, :gender, :image, :vendor)
+    params.require(:item).permit(:id, :title, :description, :price, :gender, :image, :vendor, :stock)
   end
 end
