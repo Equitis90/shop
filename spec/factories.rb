@@ -26,7 +26,8 @@ vendors = [
     'Angel Schlesser',
     'Armand Basi',
     'Armani',
-    'Vin Diesel'
+    'Vin Diesel',
+    'Montale'
 ]
 FactoryGirl.define do
   factory :item do |item|
@@ -35,6 +36,7 @@ FactoryGirl.define do
     item.sequence(:price) { Faker::Commerce.price }
     item.sequence(:gender) { [:men, :women].sample }
     item.sequence(:vendor) { vendors.sample }
+    stock true
     image Faker::Avatar.image("my-own-slug", "320x150")
   end
 end

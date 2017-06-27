@@ -7,18 +7,18 @@ RSpec.describe ShopController, type: :controller do
   end
 
   it 'return json with items on json request' do
-    items = Item.order(:id).to_json
+    items = JSON.parse(Item.order(:id).to_json)
     get :index, format: :json
-    expect(response.body).to eq items
+    expect(JSON.parse(response.body)['items']).to eq items
   end
 
   it 'return json depends on gender selection on json request' do
-    items = Item.where(gender: :women).order(:id).to_json
+    items = JSON.parse(Item.where(gender: :women).order(:id).to_json)
     get :index, params: {gender: :women}, format: :json
-    expect(response.body).to eq items
-    items = Item.where(gender: :men).order(:id).to_json
+    expect(JSON.parse(response.body)['items']).to eq items
+    items = JSON.parse(Item.where(gender: :men).order(:id).to_json)
     get :index, params: {gender: :men}, format: :json
-    expect(response.body).to eq items
+    expect(JSON.parse(response.body)['items']).to eq items
   end
 
   it 'render about page' do

@@ -28,6 +28,10 @@ RSpec.describe Item, type: :model do
   end
 
   it 'should not create item without vendor' do
-    expect {FactoryGirl.create(:item, vendor: nil)}.to raise_error ActiveRecord::StatementInvalid
+    expect {FactoryGirl.create(:item, vendor: nil)}.to raise_error ActiveRecord::RecordInvalid
+  end
+
+  it 'should not create item without stock' do
+    expect {FactoryGirl.create(:item, stock: nil)}.to raise_error ActiveRecord::RecordInvalid
   end
 end

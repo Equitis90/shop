@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
   it 'return list of items as json to authorized user' do
-    items = Item.order(:id).to_json
+    items = JSON.parse(Item.order(:id).to_json)
     get :index, session:{current_user: true}, format: :json
-    expect(response.body).to eq items
+    expect(JSON.parse(response.body)['items']).to eq items
   end
 
   it 'redirect unauthorized user to login page' do
