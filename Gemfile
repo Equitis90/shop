@@ -46,6 +46,7 @@ gem 'kaminari'
 # gem 'capistrano-rails', group: :development
 # I18n in javascript with i18njs
 gem 'i18n-js'
+gem 'scout_apm'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
