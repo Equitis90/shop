@@ -15,7 +15,8 @@ class ItemsController < ApplicationController
   def update
     item = Item.find(params["id"])
     item.update_attributes(item_params)
-    respond_with item
+
+    respond_with item, json: item
   end
 
   def create

@@ -90,16 +90,19 @@ class Items extends React.Component {
 
   handleUpdate(item) {
     $.ajax({
-      url: `/items/${item.id}`,
+      url: `/items/${item.id}.json`,
       type: 'PUT',
       data: {item: item},
-      success:() => {
-        $.getJSON('/items.json', (response) => {
-          this.setState({ items: response.items })
-        })
-        .fail(function(response) {
-          this.handleError(response.responseJSON.errors)
-        });
+      success:(resp) => {
+        let items = this.state.items;
+        for (let i in items) {
+          if (items[i].id == item.id) {
+            items[i] = resp;
+            break;
+          }
+        }
+
+        this.setState({items: items });
       },
       error: (response) => {
         this.handleError(response.responseJSON.errors)
