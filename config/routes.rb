@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'shop/delivery'
   get 'basket/order'
   get 'shop/callback'
+  get 'shop/legal_notes'
 
   post 'shop/select_locale'
 

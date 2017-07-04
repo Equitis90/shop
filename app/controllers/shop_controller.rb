@@ -37,4 +37,8 @@ class ShopController < ApplicationController
   def callback
     OrderMailer.callback_mail(params[:phone], params[:name]).deliver_now
   end
+
+  def legal_notes
+
+  end
 end
