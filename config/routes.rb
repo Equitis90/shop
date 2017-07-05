@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/google472039a46e7969fd.html' => 'shop#site_verification'
   get '/google472039a46e7969fd.html' => 'shop#site_verification'
   get 'site_map' => 'shop#site_map'
+  get 'site_map_http' => 'shop#site_map_http'
   post 'shop/select_locale'
 
   resources :sessions, only: [:create, :new, :destroy]

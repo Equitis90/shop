@@ -52,4 +52,11 @@ class ShopController < ApplicationController
                      https://www.perfumes.net.ua/about\n
                      https://www.perfumes.net.ua/legal_notes"
   end
+
+  def site_map_http
+    render :text => "http://www.perfumes.net.ua\n
+                     http://www.perfumes.net.ua/delivery\n
+                     http://www.perfumes.net.ua/about\n
+                     http://www.perfumes.net.ua/legal_notes"
+  end
 end
