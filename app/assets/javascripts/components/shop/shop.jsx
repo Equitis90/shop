@@ -127,7 +127,7 @@ class Shop extends React.Component {
       $.ajax({
         url: `/shop/index.json`,
         type: 'get',
-        data: {gender: this.state.gender, vendor: this.state.vendor, page: page },
+        data: {gender: this.state.gender, vendor: this.state.vendor, page: page, title: this.state.typed_title},
         success:(response) => {
           let newItems = this.state.items.slice().concat(response.items);
           this.setState({ items: newItems, last_page: response.last_page, page: page});
