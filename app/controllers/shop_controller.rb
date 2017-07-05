@@ -41,4 +41,8 @@ class ShopController < ApplicationController
   def legal_notes
 
   end
+
+  def site_verification
+    render :text => 'google-site-verification: google472039a46e7969fd.html'
+  end
 end

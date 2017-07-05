@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'basket/order'
   get 'shop/callback'
   get 'shop/legal_notes'
+  get '/google472039a46e7969fd.html' => 'shop#site_verification'
 
   post 'shop/select_locale'
 
