@@ -45,4 +45,8 @@ class ShopController < ApplicationController
   def site_verification
     render :text => 'google-site-verification: google472039a46e7969fd.html'
   end
+
+  def site_map
+    render :text => 'https://www.perfumes.net.ua\r\nhttps://www.perfumes.net.ua/delivery\r\nhttps://www.perfumes.net.ua/about\r\nhttps://www.perfumes.net.ua/legal_notes'
+  end
 end
