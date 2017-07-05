@@ -47,9 +47,9 @@ class ShopController < ApplicationController
   end
 
   def site_map
-    render :text => 'https://www.perfumes.net.ua<br/>
-                     https://www.perfumes.net.ua/delivery<br/>
-                     https://www.perfumes.net.ua/about<br/>
-                     https://www.perfumes.net.ua/legal_notes'
+    render :text => "https://www.perfumes.net.ua\n
+                     https://www.perfumes.net.ua/delivery\n
+                     https://www.perfumes.net.ua/about\n
+                     https://www.perfumes.net.ua/legal_notes"
   end
 end
