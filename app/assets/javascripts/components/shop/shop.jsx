@@ -29,7 +29,9 @@ class Shop extends React.Component {
       last_page: this.props.last_page,
       isButtonDisable: true,
       name: '',
-      phone: ''
+      phone: '',
+      title: '',
+      typed_title: ''
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -48,6 +50,22 @@ class Shop extends React.Component {
     this.buttonCheck = this.buttonCheck.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.callBack = this.callBack.bind(this);
+    this.typeAhead = this.typeAhead.bind(this);
+  }
+
+  typeAhead(event) {
+    let _this = this;
+
+    if (_this.state.timer) {
+      clearTimeout(_this.state.timer);
+    }
+
+    _this.setState({
+      title: event.target.value,
+      timer: setTimeout(function () {
+        _this.setState({typed_title: _this.state.title});
+      }, 1000)
+    });
   }
 
   callBack() {
@@ -259,11 +277,11 @@ class Shop extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     this.buttonCheck();
-    if(prevState.gender !== this.state.gender || prevState.vendor !== this.state.vendor) {
+    if(prevState.gender !== this.state.gender || prevState.vendor !== this.state.vendor || prevState.typed_title !== this.state.typed_title) {
       $.ajax({
         url: `/shop/index.json`,
         type: 'get',
-        data: {gender: this.state.gender, vendor: this.state.vendor},
+        data: {gender: this.state.gender, vendor: this.state.vendor, title: this.state.typed_title},
         success:(response) => {
           this.setState({ items: response.items , last_page: response.last_page, page: 1})
         },
@@ -300,6 +318,13 @@ class Shop extends React.Component {
           <ShopSorter title={I18n.t("women")} handleClick={this.handleClick.bind(this, 'women')}/>
           <ShopSorter title={I18n.t("unisex")} handleClick={this.handleClick.bind(this, 'unisex')}/>
           <ShopSorter title={I18n.t("all")} handleClick={this.handleClick.bind(this, '')}/>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-sm-12 col-md-12 col-lg-12">
+          <div className="thumbnail">
+            <label>{I18n.t('search')}</label> <input style={{width: '95%'}} onChange={this.typeAhead} value={this.state.title} placeholder={I18n.t('search_pace')}/>
+          </div>
         </div>
       </div>
       <div className="row">

@@ -13,6 +13,9 @@ class ShopController < ApplicationController
       if params[:gender] && params[:gender] != ''
         @items = @items.where(gender: params[:gender])
       end
+      if params[:title] && params[:title] != ''
+        @items = @items.where('title ilike ?', "%#{params[:title]}%")
+      end
     end
 
     @last_page = @items.last_page?
