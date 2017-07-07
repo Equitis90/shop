@@ -311,7 +311,14 @@ class Shop extends React.Component {
       <div className="row">
         <div id="title-row" className="col-sm-12 col-md-12 col-lg-12">
           <h3 className="lead left"><div id="title-container"><div className="blue">Cheap</div><div className="green">Sale</div></div><div id="slogan">{I18n.t('slogan')}</div></h3>
-          <div className="right" id="delivery-image"/>
+          <div className="right">
+            <ul>
+              <li>Бесплатная доставка!</li>
+              <li style={{marginLeft: '20px'}}>Отправка в день заказа!</li>
+              <div className="bonus"><li style={{marginLeft: '40px'}}>При заказе 3х позиций подарочный набор Chanel в подарок! </li><img  height={50} width={50} src="<%= asset_path('bonus.jpg') %>" /></div>
+              <li style={{marginLeft: '60px'}}>Острегайтесь некачественных копий!</li>
+            </ul>
+          </div>
         </div>
         <div className="list-group">
           <ShopSorter title={I18n.t("men")} handleClick={this.handleClick.bind(this, 'men')}/>
