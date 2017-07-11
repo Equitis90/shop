@@ -9,7 +9,8 @@ class NewItem extends React.Component {
       vendor: '',
       files: [],
       isButtonDisable: true,
-      stock: true
+      stock: true,
+      original: false
     };
 
     this.handleChangePrice = this.handleChangePrice.bind(this);
@@ -20,8 +21,11 @@ class NewItem extends React.Component {
     this.handleCheckbox = this.handleCheckbox.bind(this);
   }
 
-  handleCheckbox(){
-    this.setState({stock: !this.state.stock});
+  handleCheckbox(event){
+    const target = event.target;
+    const name = target.name;
+    const value = target.checked;
+    this.setState({[name]: value});
   }
 
   handleChangePrice(price) {
@@ -66,10 +70,11 @@ class NewItem extends React.Component {
     let image = this.state.files[0];
     let vendor = this.state.vendor;
     let stock = this.state.stock;
+    let original = this.state.original;
     $.ajax({
       url: '/items',
       type: 'POST',
-      data: { item: { title: title, description: description, price: price, gender: gender, image: image, vendor: vendor, stock: stock } },
+      data: { item: { title: title, description: description, price: price, gender: gender, image: image, vendor: vendor, stock: stock, original: original } },
       contentType: 'multipart/form-data',
       success: (item) => {
         this.props.handleSubmit(item);
@@ -125,6 +130,8 @@ class NewItem extends React.Component {
         </select>
         <label>В наличии:</label>
         <input name="stock" defaultChecked={this.state.stock} type="checkbox" onChange={this.handleCheckbox}/> <br/>
+        <label>Оригинал:</label>
+        <input name="original" defaultChecked={this.state.original} type="checkbox" onChange={this.handleCheckbox}/> <br/>
         <label>Бренд:</label>
         <select name="vendor" onChange={this.handleChange}>
           <option disabled selected value> -- Выберите бренд -- </option>

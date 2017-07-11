@@ -31,7 +31,8 @@ class Shop extends React.Component {
       name: '',
       phone: '',
       title: '',
-      typed_title: ''
+      typed_title: '',
+      original: ''
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -51,6 +52,7 @@ class Shop extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.callBack = this.callBack.bind(this);
     this.typeAhead = this.typeAhead.bind(this);
+    this.handleClickOriginal = this.handleClickOriginal.bind(this)
   }
 
   typeAhead(event) {
@@ -127,7 +129,7 @@ class Shop extends React.Component {
       $.ajax({
         url: `/shop/index.json`,
         type: 'get',
-        data: {gender: this.state.gender, vendor: this.state.vendor, page: page, title: this.state.typed_title},
+        data: {gender: this.state.gender, vendor: this.state.vendor, page: page, title: this.state.typed_title, original: this.state.original},
         success:(response) => {
           let newItems = this.state.items.slice().concat(response.items);
           this.setState({ items: newItems, last_page: response.last_page, page: page});
@@ -277,11 +279,11 @@ class Shop extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     this.buttonCheck();
-    if(prevState.gender !== this.state.gender || prevState.vendor !== this.state.vendor || prevState.typed_title !== this.state.typed_title) {
+    if(prevState.gender !== this.state.gender || prevState.vendor !== this.state.vendor || prevState.typed_title !== this.state.typed_title || prevState.original !== this.state.original) {
       $.ajax({
         url: `/shop/index.json`,
         type: 'get',
-        data: {gender: this.state.gender, vendor: this.state.vendor, title: this.state.typed_title},
+        data: {gender: this.state.gender, vendor: this.state.vendor, title: this.state.typed_title, original: this.state.original},
         success:(response) => {
           this.setState({ items: response.items , last_page: response.last_page, page: 1})
         },
@@ -295,6 +297,13 @@ class Shop extends React.Component {
   handleClick(gender, event) {
     if(gender !== this.state.gender) {
       this.setState({gender: gender});
+    }
+    event.preventDefault();
+  }
+
+  handleClickOriginal(original, event) {
+    if(original !== this.state.original) {
+      this.setState({original: original});
     }
     event.preventDefault();
   }
@@ -319,6 +328,11 @@ class Shop extends React.Component {
               <li style={{marginLeft: '60px'}}>Острегайтесь некачественных копий!</li>
             </ul>
           </div>
+        </div>
+        <div className="list-group">
+          <a href="" className="list-group-item or" onClick={this.handleClickOriginal.bind(this, '')}>{I18n.t("all")}</a>
+          <a href="" className="list-group-item or" onClick={this.handleClickOriginal.bind(this, 'original')}>{I18n.t("original")}</a>
+          <a href="" className="list-group-item or" onClick={this.handleClickOriginal.bind(this, 'license')}>{I18n.t("license")}</a>
         </div>
         <div className="list-group">
           <ShopSorter title={I18n.t("men")} handleClick={this.handleClick.bind(this, 'men')}/>

@@ -16,6 +16,9 @@ class ShopController < ApplicationController
       if params[:title] && params[:title] != ''
         @items = @items.where('title ilike ?', "%#{params[:title]}%")
       end
+      if params[:original] && params[:original] != ''
+        @items = @items.where(original: params[:original] == 'original' ? true : false)
+      end
     end
 
     @last_page = @items.last_page?

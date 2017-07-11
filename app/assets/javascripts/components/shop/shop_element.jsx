@@ -54,6 +54,7 @@ class ShopElement extends React.Component {
           <p>{I18n.t('brand')} {this.props.item.vendor}</p>
           <p>{I18n.t('category')} {I18n.t(this.props.item.gender)}</p>
           {this.props.item.stock ? <p style={{color: 'green'}}>{I18n.t('instock')}</p> : <p style={{color: 'red'}}>{I18n.t('outofstock')}</p>}
+          {this.props.item.original ? <p>{I18n.t('original')}</p> : <p>{I18n.t('license')}</p>}
           {button}
           <p className="description">{this.props.item.description}</p>
         </div>

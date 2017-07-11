@@ -17,7 +17,7 @@
 
     .thumbnail {
       padding: 0;
-      height: 530px;
+      height: 560px;
       overflow: visible;
 
       .description {
@@ -187,6 +187,11 @@
 
 a.list-group-item {
   color: blue;
+}
+
+.list-group-item.or {
+  width: 33.3%;
+  margin-bottom: 0;
 }
 
 #vendors-container {
