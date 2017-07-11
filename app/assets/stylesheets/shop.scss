@@ -183,6 +183,7 @@
   width: 25%;
   padding-right: -10px;
   background-color: lightblue;
+  text-align: center;
 }
 
 a.list-group-item {
@@ -190,7 +191,8 @@ a.list-group-item {
 }
 
 .list-group-item.or {
-  width: 33.3%;
+  width: 50%;
+  background-color: pink;
   margin-bottom: 0;
 }
 
