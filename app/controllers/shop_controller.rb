@@ -67,4 +67,8 @@ class ShopController < ApplicationController
                      http://www.perfumes.net.ua/about\n
                      http://www.perfumes.net.ua/legal_notes"
   end
+
+  def info
+
+  end
 end

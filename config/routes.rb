@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'basket/order'
   get 'shop/callback'
   get 'shop/legal_notes'
+  get 'shop/info'
   get '/google472039a46e7969fd.html' => 'shop#site_verification'
   get '/google472039a46e7969fd.html' => 'shop#site_verification'
   get 'site_map' => 'shop#site_map'

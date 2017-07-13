@@ -161,9 +161,16 @@ class NewItem extends React.Component {
           <option value="Bvlgari">Bvlgari</option>
           <option value="Angel Schlesser">Angel Schlesser</option>
           <option value="Armand Basi">Armand Basi</option>
-          <option value="Armani">Armani</option>
+          <option value="Armani">Giorgio Armani</option>
           <option value="Vin Diesel">Vin Diesel</option>
           <option value="Montale">Montale</option>
+          <option value="Antonio Banderas">Antonio Banderas</option>
+          <option value="Christina Aguilera">Christina Aguilera</option>
+          <option value="Davidoff">Davidoff</option>
+          <option value="Donna Karan">Donna Karan</option>
+          <option value="Hermes">Hermes</option>
+          <option value="Jimmy Choo">Jimmy Choo</option>
+          <option value="Lacoste">Lacoste</option>
         </select>
         <br/>
         <label>Изображение:
