@@ -2,13 +2,21 @@ class ShopController < ApplicationController
   def index
     page = params[:page] || 1
     @vendor = []
+    @original = 'license'
     if params[:brand] && Item.where(vendor: params[:brand]).first
       @items = Item.where(vendor: params[:brand]).page(1).per(12).order(:id)
       @vendor = [params[:brand]]
+      if params[:original] && params[:original] != ''
+        @items = @items.where(original: params[:original] == 'original' ? true : false)
+        @original = params[:original]
+      else
+        @items = @items.where(original: false)
+      end
     else
       @items = Item.page(page).per(12).order(:id)
       if params[:vendor] && params[:vendor] != []
         @items = @items.where(vendor: params[:vendor])
+        @vendor = params[:vendor]
       end
       if params[:gender] && params[:gender] != ''
         @items = @items.where(gender: params[:gender])
@@ -27,7 +35,7 @@ class ShopController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: {items: @items, last_page: @last_page} }
+      format.json { render json: {items: @items, last_page: @last_page, original: @original} }
     end
   end
 
