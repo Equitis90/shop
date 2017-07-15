@@ -135,42 +135,42 @@ class NewItem extends React.Component {
         <label>Бренд:</label>
         <select name="vendor" onChange={this.handleChange}>
           <option disabled selected value> -- Выберите бренд -- </option>
-          <option value="Hugo Boss">Hugo Boss</option>
-          <option value="Kenzo">Kenzo</option>
-          <option value="Paco Rabanne">Paco Rabanne</option>
-          <option value="Gucci">Gucci</option>
-          <option value="Trussardi">Trussardi</option>
-          <option value="Lanvin">Lanvin</option>
-          <option value="Bond">Bond</option>
-          <option value="Givenchy">Givenchy</option>
-          <option value="Moschino">Moschino</option>
-          <option value="Yves Saint Laurent">Yves Saint Laurent</option>
-          <option value="Nina Ricci">Nina Ricci</option>
-          <option value="Tom Ford">Tom Ford</option>
-          <option value="Versace">Versace</option>
-          <option value="Roberto Cavalli">Roberto Cavalli</option>
-          <option value="Lancome">Lancome</option>
-          <option value="Dolce&Gabbana">Dolce&Gabbana</option>
-          <option value="Dior">Dior</option>
-          <option value="Chanel">Chanel</option>
-          <option value="Carolina Herrera">Carolina Herrera</option>
-          <option value="Calvin Klein">Calvin Klein</option>
-          <option value="Cacharel">Cacharel</option>
-          <option value="Burberry">Burberry</option>
-          <option value="Beyonce">Beyonce</option>
-          <option value="Bvlgari">Bvlgari</option>
           <option value="Angel Schlesser">Angel Schlesser</option>
+          <option value="Antonio Banderas">Antonio Banderas</option>
           <option value="Armand Basi">Armand Basi</option>
           <option value="Armani">Giorgio Armani</option>
-          <option value="Vin Diesel">Vin Diesel</option>
-          <option value="Montale">Montale</option>
-          <option value="Antonio Banderas">Antonio Banderas</option>
+          <option value="Beyonce">Beyonce</option>
+          <option value="Bond">Bond</option>
+          <option value="Burberry">Burberry</option>
+          <option value="Bvlgari">Bvlgari</option>
+          <option value="Cacharel">Cacharel</option>
+          <option value="Calvin Klein">Calvin Klein</option>
+          <option value="Carolina Herrera">Carolina Herrera</option>
+          <option value="Chanel">Chanel</option>
           <option value="Christina Aguilera">Christina Aguilera</option>
           <option value="Davidoff">Davidoff</option>
+          <option value="Dior">Dior</option>
+          <option value="Dolce&Gabbana">Dolce&Gabbana</option>
           <option value="Donna Karan">Donna Karan</option>
+          <option value="Givenchy">Givenchy</option>
+          <option value="Gucci">Gucci</option>
           <option value="Hermes">Hermes</option>
+          <option value="Hugo Boss">Hugo Boss</option>
           <option value="Jimmy Choo">Jimmy Choo</option>
+          <option value="Kenzo">Kenzo</option>
           <option value="Lacoste">Lacoste</option>
+          <option value="Lancome">Lancome</option>
+          <option value="Lanvin">Lanvin</option>
+          <option value="Montale">Montale</option>
+          <option value="Moschino">Moschino</option>
+          <option value="Nina Ricci">Nina Ricci</option>
+          <option value="Paco Rabanne">Paco Rabanne</option>
+          <option value="Roberto Cavalli">Roberto Cavalli</option>
+          <option value="Tom Ford">Tom Ford</option>
+          <option value="Trussardi">Trussardi</option>
+          <option value="Versace">Versace</option>
+          <option value="Vin Diesel">Vin Diesel</option>
+          <option value="Yves Saint Laurent">Yves Saint Laurent</option>
         </select>
         <br/>
         <label>Изображение:
