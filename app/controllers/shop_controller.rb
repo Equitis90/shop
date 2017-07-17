@@ -79,4 +79,8 @@ class ShopController < ApplicationController
   def info
 
   end
+
+  def info2
+
+  end
 end

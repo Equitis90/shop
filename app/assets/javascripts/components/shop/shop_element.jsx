@@ -41,7 +41,7 @@ class ShopElement extends React.Component {
   render() {
     let button = this.state.order_mode ? <div className="order">
       <label>{I18n.t('amount')} <input onKeyPress={this.keyPressHandler} type="number" min="1" value={this.state.amount} pattern="[0-9]" onChange={this.handleChange}/></label>
-      <button className="btn btn-info" onClick={this.toBasket.bind(this, 'order')}>{I18n.t('order')}</button>
+      <button className="btn btn-primary" onClick={this.toBasket.bind(this, 'order')}>{I18n.t('order')}</button>
       <button className="btn btn-primary" onClick={this.toBasket.bind(this, 'add')}>{I18n.t('add_and_proceed')}</button>
       <button className="btn btn-danger" onClick={this.unsetOrderMode}>{I18n.t('cancel')}</button></div> :
       <button className="btn btn-primary" onClick={this.setOrderMode}>{I18n.t('to_cart')}</button>;

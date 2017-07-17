@@ -31,7 +31,7 @@
         .description {
           height: 100%;
           z-index: 100;
-          background: bisque;
+          background: #e3ceb3;
         }
       }
 
@@ -123,58 +123,26 @@
   font-size: 150%;
 }
 
-.green {
-  display: inline;
-  color: yellow;
-}
-
-.blue {
-  display: inline;
-  color: orange;
-}
-
 #title-container {
-  -ms-transform: rotate(-3deg); /* IE 9 */
-  -webkit-transform: rotate(-3deg); /* Safari */
-  transform: rotate(-3deg);
-  font-size: 400%;
-  font-family: 'Indie Flower', cursive;
+  font-size: 450%;
+  font-family: 'Limelight', cursive;
+  color: #35025c;
 }
 
 #title-row {
   height: 200px;
-  background: url( 'title_background.jpg' );
-  background-position: calc(100%) calc(50%);
-  border: solid 2px cornflowerblue;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  margin-top: -20px;
   .right {
-    margin: 30px 0 30px 0;
-    font-size: 165%;
-    font-family: 'Lobster', cursive;
-    color: #29ea98;
-    .bonus {
-      li {
-        color: orangered;
-        float: left;
-      }
-      img {
-        margin-left: 10px;
-        float: right;
-      }
-    }
+    font-size: 150%;
   }
 }
 
 .lead {
   padding-left: 60px;
   #slogan {
-    -ms-transform: rotate(-3deg); /* IE 9 */
-    -webkit-transform: rotate(-3deg); /* Safari */
-    transform: rotate(-3deg);
     font-size: 160%;
-    font-family: 'Lobster', cursive;
-    color: lawngreen;
-    margin-left: 40px;
+    text-align: center;
+    margin-top: -20px;
   }
 }
 
@@ -182,33 +150,25 @@
   display: inline-block;
   width: 25%;
   padding-right: -10px;
-  background-color: lightblue;
+  background-color: #e3ceb3;
   text-align: center;
-}
-
-a.list-group-item {
-  color: blue;
+  color: #35025c !important;
 }
 
 .list-group-item.or {
   width: 50%;
-  background-color: pink;
   margin-bottom: 0;
 }
 
 #vendors-container {
   background: rgba(255, 255, 255, 0.4);
-  h4 {
-    color: darkgoldenrod;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  }
   .vendors {
     color: darkblue;
   }
 }
 
 .thumbnail.item {
-  background: bisque;
+  background: #e3ceb3;
 }
 
 #cart {
@@ -218,7 +178,7 @@ a.list-group-item {
 .order {
   position: relative;
   z-index: 100;
-  background: bisque;
+  background: #e3ceb3;
 }
 
 #schedule {
@@ -227,9 +187,6 @@ a.list-group-item {
   h3 {
     float: left;
     width: 60%;
-    font-family: 'Lobster', cursive;
-    color: darkblue;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     margin: 5px;
   }
   #callback {

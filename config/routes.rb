@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'shop/callback'
   get 'shop/legal_notes'
   get 'shop/info'
+  get 'shop/info2'
   get '/google472039a46e7969fd.html' => 'shop#site_verification'
   get '/google472039a46e7969fd.html' => 'shop#site_verification'
   get 'site_map' => 'shop#site_map'
