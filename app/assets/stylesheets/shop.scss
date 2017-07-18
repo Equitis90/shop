@@ -129,16 +129,43 @@
   color: #35025c;
 }
 
-#title-row {
-  height: 200px;
-  margin-top: -20px;
-  .right {
-    font-size: 150%;
+@media screen and (max-device-width : 320px)
+{
+  #title-container {
+    font-size: 300%;
   }
 }
 
+@media screen and (max-device-width : 600px)
+{
+  #title-container {
+    font-size: 300%;
+  }
+}
+
+@media screen and (max-device-width : 1024px)
+{
+  #title-container {
+    font-size: 400%;
+  }
+}
+
+@media screen and (max-device-width : 1171px)
+{
+  #title-container {
+    font-size: 400%;
+  }
+}
+
+#title-row {
+  height: 200px;
+  margin-top: -20px;
+}
+
+.promo {
+  font-size: 120%;
+}
 .lead {
-  padding-left: 60px;
   #slogan {
     font-size: 160%;
     text-align: center;

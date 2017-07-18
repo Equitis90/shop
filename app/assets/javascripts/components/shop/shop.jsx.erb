@@ -318,9 +318,11 @@ class Shop extends React.Component {
         </div>
       </div>
       <div className="row">
-        <div id="title-row" className="col-sm-12 col-md-12 col-lg-12">
+        <div id="title-row" className="col-sm-6 col-md-6 col-lg-6">
           <h3 className="lead left"><div id="title-container">CheapSale</div><div id="slogan">{I18n.t('slogan')}</div></h3>
-          <div className="right">
+        </div>
+        <div className="col-sm-6 col-md-6 col-lg-6">
+          <div className="promo">
             Оригинал или лицензия? Выбери сам!
             <ul>
               <li>Бесплатная доставка!</li>
@@ -331,15 +333,19 @@ class Shop extends React.Component {
             </ul>
           </div>
         </div>
-        <div className="list-group">
-          <a href="" className="list-group-item or" onClick={this.handleClickOriginal.bind(this, 'original')}>{I18n.t("original")}</a>
-          <a href="" className="list-group-item or" onClick={this.handleClickOriginal.bind(this, 'license')}>{I18n.t("license")}</a>
-        </div>
-        <div className="list-group">
-          <ShopSorter title={I18n.t("men")} handleClick={this.handleClick.bind(this, 'men')}/>
-          <ShopSorter title={I18n.t("women")} handleClick={this.handleClick.bind(this, 'women')}/>
-          <ShopSorter title={I18n.t("unisex")} handleClick={this.handleClick.bind(this, 'unisex')}/>
-          <ShopSorter title={I18n.t("all")} handleClick={this.handleClick.bind(this, '')}/>
+      </div>
+      <div className="row">
+        <div className="col-sm-12 col-md-12 col-lg-12">
+          <div className="list-group">
+            <a href="" className="list-group-item or" onClick={this.handleClickOriginal.bind(this, 'original')}>{I18n.t("original")}</a>
+            <a href="" className="list-group-item or" onClick={this.handleClickOriginal.bind(this, 'license')}>{I18n.t("license")}</a>
+          </div>
+          <div className="list-group">
+            <ShopSorter title={I18n.t("men")} handleClick={this.handleClick.bind(this, 'men')}/>
+            <ShopSorter title={I18n.t("women")} handleClick={this.handleClick.bind(this, 'women')}/>
+            <ShopSorter title={I18n.t("unisex")} handleClick={this.handleClick.bind(this, 'unisex')}/>
+            <ShopSorter title={I18n.t("all")} handleClick={this.handleClick.bind(this, '')}/>
+          </div>
         </div>
       </div>
       <div className="row">
