@@ -10,7 +10,8 @@ class NewItem extends React.Component {
       files: [],
       isButtonDisable: true,
       stock: true,
-      original: false
+      original: false,
+      discount: 0
     };
 
     this.handleChangePrice = this.handleChangePrice.bind(this);
@@ -71,10 +72,11 @@ class NewItem extends React.Component {
     let vendor = this.state.vendor;
     let stock = this.state.stock;
     let original = this.state.original;
+    let discount = this.state.discount;
     $.ajax({
       url: '/items',
       type: 'POST',
-      data: { item: { title: title, description: description, price: price, gender: gender, image: image, vendor: vendor, stock: stock, original: original } },
+      data: { item: { discount: discount, title: title, description: description, price: price, gender: gender, image: image, vendor: vendor, stock: stock, original: original } },
       contentType: 'multipart/form-data',
       success: (item) => {
         this.props.handleSubmit(item);
@@ -121,6 +123,9 @@ class NewItem extends React.Component {
         <br/>
         <label>Цена:</label>
         <Price handleChangePrice={this.handleChangePrice} price={this.state.price}/> грн.
+        <br/>
+        <label>Скидка:</label>
+        <input name="discount" type="number" value={this.state.discount} onChange={this.handleChange}/> %
         <br/>
         <label>Мужские/женские:</label>
         <select name="gender" value={this.state.gender} onChange={this.handleChange}>

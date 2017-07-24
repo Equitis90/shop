@@ -195,6 +195,12 @@
 }
 
 .thumbnail.item {
+  .caption {
+    img {
+      margin: 0 !important;
+    }
+  }
+  margin-bottom: 4px;
   background: #e3ceb3;
 }
 
@@ -227,4 +233,24 @@
   display: block;
   margin-bottom: 7px;
   width: 100%;
+}
+
+.default-price {
+  text-decoration: line-through;
+  display: inline;
+  color: lightslategray;
+}
+
+.discounted-price {
+  display: inline;
+  color: red;
+}
+
+.discount {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  color: red;
+  font-size: 150%;
+  text-align: center;
 }

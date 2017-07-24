@@ -24,7 +24,8 @@ class Item extends React.Component {
       let image = this.state.image;
       let stock = this.refs.stock.checked;
       let original = this.refs.original.checked;
-      let item = {id: id, title: title, description: description, price: price, gender: gender, image: image, vendor: vendor, stock: stock, original: original};
+      let discount = this.refs.discount.value;
+      let item = {discount: discount, id: id, title: title, description: description, price: price, gender: gender, image: image, vendor: vendor, stock: stock, original: original};
       this.props.handleUpdate(item)
     }
     this.setState({editable: !this.state.editable})
@@ -40,25 +41,27 @@ class Item extends React.Component {
 
   render() {
     const genders = {'women': 'Женские', 'men': 'Мужские', 'unisex': 'Унисекс'};
-    let stock = this.state.editable ? <h4><input ref="stock" defaultChecked={this.props.item.stock} type="checkbox" /></h4> :
-      <h4>{this.props.item.stock ? 'В наличии' : 'Закончились'}</h4>;
-    let original = this.state.editable ? <h4><input ref="original" defaultChecked={this.props.item.original} type="checkbox" /></h4> :
-      <h4>{this.props.item.original ? 'Оригинал' : 'Лицензия'}</h4>;
-    let title = this.state.editable ? <h4><input
+    let discount = this.state.editable ? <h4>Скидка: <input ref="discount" type="number" defaultValue={this.props.item.discount}/> %</h4> :
+      <h4>Скидка: {this.props.item.discount} %</h4>;
+    let stock = this.state.editable ? <h4>Склад: <input ref="stock" defaultChecked={this.props.item.stock} type="checkbox" /></h4> :
+      <h4>Склад: {this.props.item.stock ? 'В наличии' : 'Закончились'}</h4>;
+    let original = this.state.editable ? <h4>Оригинал: <input ref="original" defaultChecked={this.props.item.original} type="checkbox" /></h4> :
+      <h4>Оригинал: {this.props.item.original ? 'Оригинал' : 'Лицензия'}</h4>;
+    let title = this.state.editable ? <h4>Название: <input
       ref="title"
       type="text"
-      defaultValue={this.props.item.title}/></h4> : <h4>{this.props.item.title}</h4>;
+      defaultValue={this.props.item.title}/></h4> : <h4>Название: {this.props.item.title}</h4>;
     let description = !this.state.editable;
-    let price = this.state.editable ? <h4><Price handleChangePrice={this.handleChangePrice}
+    let price = this.state.editable ? <h4>Цена: <Price handleChangePrice={this.handleChangePrice}
                                                  price={this.state.price}/> грн.</h4> :
-      <h4>{toCurrency(this.state.price)} грн.</h4>;
-    let gender = this.state.editable ? <h4><select ref="gender" name="gender" defaultValue={this.props.item.gender}>
+      <h4>Цена: {toCurrency(this.state.price)} грн.</h4>;
+    let gender = this.state.editable ? <h4>Пол: <select ref="gender" name="gender" defaultValue={this.props.item.gender}>
       <option value="women">Женские</option>
       <option value="men">Мужские</option>
       <option value="unisex">Унисекс</option>
-    </select></h4> : <h4>{genders[this.props.item.gender]}</h4>;
+    </select></h4> : <h4>Пол: {genders[this.props.item.gender]}</h4>;
 
-    let vendor = this.state.editable ? <h4><select ref="vendor" name="vendor" defaultValue={this.props.item.vendor}>
+    let vendor = this.state.editable ? <h4>Бренд: <select ref="vendor" name="vendor" defaultValue={this.props.item.vendor}>
       <option value="Angel Schlesser">Angel Schlesser</option>
       <option value="Antonio Banderas">Antonio Banderas</option>
       <option value="Armand Basi">Armand Basi</option>
@@ -95,7 +98,7 @@ class Item extends React.Component {
       <option value="Versace">Versace</option>
       <option value="Vin Diesel">Vin Diesel</option>
       <option value="Yves Saint Laurent">Yves Saint Laurent</option>
-    </select></h4> : <h4>{this.props.item.vendor}</h4>;
+    </select></h4> : <h4>Бренд: {this.props.item.vendor}</h4>;
 
     let img = this.state.editable ? <h4>
       <img src={this.state.image} height={100} width={200}/>
@@ -107,11 +110,12 @@ class Item extends React.Component {
         {title}
         <textarea
           ref="description"
-          cols={20}
+          cols={40}
           rows={6}
           readOnly={description}
           defaultValue={this.props.item.description}/>
         {price}
+        {discount}
         {gender}
         {vendor}
         {stock}

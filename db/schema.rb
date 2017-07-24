@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711090753) do
+ActiveRecord::Schema.define(version: 20170724063026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20170711090753) do
     t.string   "vendor",      default: "",    null: false
     t.boolean  "stock",       default: true,  null: false
     t.boolean  "original",    default: false, null: false
+    t.integer  "discount",    default: 0,     null: false
   end
 
 end

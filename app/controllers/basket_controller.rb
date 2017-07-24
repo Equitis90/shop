@@ -6,14 +6,16 @@ class BasketController < ApplicationController
     if params[:add]
       item = Item.where(id: params[:id]).first
       item_id = item.id.to_s
+      discount = item.discount
       if params[:amount] && params[:amount] != '' && params[:amount].to_i > 0
         amount = params[:amount].to_i
-        item_sum = item.price * amount
+        price = discount == 0 ? item.price.round(2) : (item.price - (item.price * discount * 0.01)).round(2)
+        item_sum = price * amount
         if session[:cart]['items'][item_id]
           session[:cart]['items'][item_id]['count'] = (session[:cart]['items'][item_id]['count'].to_i + amount).to_s
           session[:cart]['items'][item_id]['sum'] = (session[:cart]['items'][item_id]['sum'].to_f + item_sum).to_s
         else
-          session[:cart]['items'][item_id] = {count: params[:amount], price: item.price, sum: item_sum, title: item.title}
+          session[:cart]['items'][item_id] = {count: params[:amount], price: price, sum: item_sum, title: item.title}
         end
         session[:cart]['sum'] = (session[:cart]['sum'].to_f + item_sum).to_s
         session[:cart]['count'] = (session[:cart]['count'].to_i + amount).to_s

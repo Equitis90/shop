@@ -17,7 +17,7 @@ class AllItems extends React.Component {
   render() {
     let items= this.props.items.map((item) => {
       return (
-        <div key={item.id} className="item">
+        <div key={item.id} className="col-sm-4 col-md-4 col-lg-4">
           <Item item={item}
                 handleDelete={this.handleDelete.bind(this, item.id)}
                 handleUpdate={this.onUpdate}
@@ -27,7 +27,7 @@ class AllItems extends React.Component {
     });
 
     return(
-      <div className="all_items">
+      <div className="row">
         {items}
       </div>
     )
