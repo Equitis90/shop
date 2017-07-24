@@ -103,7 +103,7 @@ class Item extends React.Component {
     let img = this.state.editable ? <h4>
       <img src={this.state.image} height={100} width={200}/>
       <Image selectImage={this.selectImage} files={this.state.files} required={false}/>
-    </h4> : <img src={this.state.image} height={100} width={200}/>;
+    </h4> : <h4><img src={this.state.image} height={100} width={200}/></h4>;
 
     return (
       <div className="thumbnail">
