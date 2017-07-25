@@ -187,6 +187,10 @@
   margin-bottom: 0;
 }
 
+.list-group-item.or.discount {
+  color: red;
+}
+
 #vendors-container {
   background: rgba(255, 255, 255, 0.4);
   .vendors {
