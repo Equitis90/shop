@@ -9,7 +9,7 @@ class BasketController < ApplicationController
       discount = item.discount
       if params[:amount] && params[:amount] != '' && params[:amount].to_i > 0
         amount = params[:amount].to_i
-        price = discount == 0 ? item.price.round(2) : (item.price - (item.price * discount * 0.01)).round(2)
+        price = discount == 0 ? item.price.round : (item.price - (item.price * discount * 0.01)).round
         item_sum = price * amount
         if session[:cart]['items'][item_id]
           session[:cart]['items'][item_id]['count'] = (session[:cart]['items'][item_id]['count'].to_i + amount).to_s

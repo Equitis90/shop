@@ -41,7 +41,7 @@ class ShopElement extends React.Component {
   render() {
     let discount = this.props.item.discount === 0 ? '' : <div className="discount">{I18n.t('discount')}<br/> -{this.props.item.discount}%</div>;
     let price = this.props.item.discount === 0 ? <div className="right">₴{toCurrency(this.props.item.price)}</div> :
-      <div className="right"><div className="discounted-price">₴{toCurrency(Math.round((this.props.item.price - (this.props.item.price * this.props.item.discount * 0.01)) * 100) / 100)}</div>(<div className="default-price">₴{toCurrency(this.props.item.price)}</div>)</div>;
+      <div className="right"><div className="discounted-price">₴{toCurrency(Math.round(this.props.item.price - (this.props.item.price * this.props.item.discount * 0.01)))}</div>(<div className="default-price">₴{toCurrency(this.props.item.price)}</div>)</div>;
     let button = this.state.order_mode ? <div className="order">
       <label>{I18n.t('amount')} <input onKeyPress={this.keyPressHandler} type="number" min="1" value={this.state.amount} pattern="[0-9]" onChange={this.handleChange}/></label>
       <button className="btn btn-primary" onClick={this.toBasket.bind(this, 'order')}>{I18n.t('order')}</button>
