@@ -32,7 +32,8 @@ class Shop extends React.Component {
       phone: '',
       title: '',
       typed_title: '',
-      original: this.props.original
+      original: this.props.original,
+      discount: ''
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -53,6 +54,7 @@ class Shop extends React.Component {
     this.callBack = this.callBack.bind(this);
     this.typeAhead = this.typeAhead.bind(this);
     this.handleClickOriginal = this.handleClickOriginal.bind(this)
+    this.handleClickDiscount = this.handleClickDiscount.bind(this)
   }
 
   typeAhead(event) {
@@ -129,7 +131,7 @@ class Shop extends React.Component {
       $.ajax({
         url: `/shop/index.json`,
         type: 'get',
-        data: {gender: this.state.gender, vendor: this.state.vendor, page: page, title: this.state.typed_title, original: this.state.original},
+        data: {gender: this.state.gender, vendor: this.state.vendor, page: page, title: this.state.typed_title, original: this.state.original, discount: this.state.discount},
         success:(response) => {
           let newItems = this.state.items.slice().concat(response.items);
           this.setState({ items: newItems, last_page: response.last_page, page: page});
@@ -279,11 +281,11 @@ class Shop extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     this.buttonCheck();
-    if(prevState.gender !== this.state.gender || prevState.vendor !== this.state.vendor || prevState.typed_title !== this.state.typed_title || prevState.original !== this.state.original) {
+    if(prevState.gender !== this.state.gender || prevState.vendor !== this.state.vendor || prevState.typed_title !== this.state.typed_title || prevState.original !== this.state.original || prevState.discount !== this.state.discount) {
       $.ajax({
         url: `/shop/index.json`,
         type: 'get',
-        data: {gender: this.state.gender, vendor: this.state.vendor, title: this.state.typed_title, original: this.state.original},
+        data: {gender: this.state.gender, vendor: this.state.vendor, title: this.state.typed_title, original: this.state.original, discount: this.state.discount},
         success:(response) => {
           this.setState({ items: response.items , last_page: response.last_page, page: 1})
         },
@@ -308,6 +310,13 @@ class Shop extends React.Component {
     event.preventDefault();
   }
 
+  handleClickDiscount(discount, event) {
+    if(discount !== this.state.discount) {
+      this.setState({discount: discount});
+    }
+    event.preventDefault();
+  }
+
   render() {
     return (
     <div className="container" id="main_container">
@@ -315,6 +324,7 @@ class Shop extends React.Component {
         <div id="schedule" className="thumbnail col-sm-12 col-md-12 col-lg-12">
           <h3>{I18n.t('schedule')}</h3>
           <button id="callback" className="btn btn-primary" onClick={this.openModal2}>{I18n.t('callback')}</button>
+          <h3>{I18n.t('phones')}</h3>
         </div>
       </div>
       <div className="row">
@@ -336,6 +346,10 @@ class Shop extends React.Component {
       </div>
       <div className="row">
         <div className="col-sm-12 col-md-12 col-lg-12">
+          <div className="list-group">
+            <a href="" className="list-group-item or" onClick={this.handleClickDiscount.bind(this, 'discount')}>{I18n.t("discount_button")}</a>
+            <a href="" className="list-group-item or" onClick={this.handleClickDiscount.bind(this, '')}>{I18n.t("all")}</a>
+          </div>
           <div className="list-group">
             <a href="" className="list-group-item or" onClick={this.handleClickOriginal.bind(this, 'original')}>{I18n.t("original")}</a>
             <a href="" className="list-group-item or" onClick={this.handleClickOriginal.bind(this, 'license')}>{I18n.t("license")}</a>

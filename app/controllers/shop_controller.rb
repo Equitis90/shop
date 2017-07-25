@@ -29,6 +29,9 @@ class ShopController < ApplicationController
       else
         @items = @items.where(original: false)
       end
+      if params[:discount] && params[:discount] != ''
+        @items = @items.where('discount > 0')
+      end
     end
 
     @last_page = @items.last_page?
