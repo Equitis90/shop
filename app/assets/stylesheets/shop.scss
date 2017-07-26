@@ -44,7 +44,9 @@
         }
 
         img {
-          width: 100%;
+          max-width: 100%;
+          display: block;
+          margin: auto;
         }
 
         button {
@@ -191,11 +193,6 @@
 }
 
 .thumbnail.item {
-  .caption {
-    img {
-      margin: 0 !important;
-    }
-  }
   margin-bottom: 4px;
   background: #e3ceb3;
 }
