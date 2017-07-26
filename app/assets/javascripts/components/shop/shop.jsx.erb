@@ -451,8 +451,8 @@ class Shop extends React.Component {
         contentLabel="Calback dialog"
       > <div>
         <div>
-          <label className="block">{I18n.t('name')}</label> <input className="block" name="name" value={this.state.name} onChange={this.handleChange}/>
-          <label className="block">{I18n.t('phone_number')}</label> <input className="block" name="phone" value={this.state.phone} onChange={this.handleChange}/>
+          <label>{I18n.t('name')}</label> <input className="block" name="name" value={this.state.name} onChange={this.handleChange}/>
+          <label>{I18n.t('phone_number')}</label> <input className="block" name="phone" value={this.state.phone} onChange={this.handleChange}/>
         </div>
         <button className="btn btn-primary" disabled={this.state.isButtonDisable} onClick={this.callBack}>{I18n.t('callback')}</button>&nbsp;
         <button className="btn btn-danger" onClick={this.closeModal2}>{I18n.t('cancel')}</button>

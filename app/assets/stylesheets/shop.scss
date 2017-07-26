@@ -44,6 +44,7 @@
         }
 
         img {
+          background-color: white;
           max-width: 100%;
           display: block;
           margin: auto;
@@ -147,7 +148,7 @@
     }
   }
   #title-row {
-    height: 100px !important;
+    height: 122px !important;
   }
 }
 
@@ -221,8 +222,10 @@
 
 .block {
   display: block;
-  margin-bottom: 7px;
+  margin: 5px;
   width: 100%;
+  border-width: 2px;
+  border-style: groove;
 }
 
 .default-price {
