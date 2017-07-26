@@ -124,36 +124,27 @@
 }
 
 #title-container {
-  font-size: 450%;
+  font-size: 460%;
   font-family: 'Limelight', cursive;
   color: #35025c;
-}
-
-@media screen and (max-device-width : 320px)
-{
-  #title-container {
-    font-size: 300%;
-  }
-}
-
-@media screen and (max-device-width : 600px)
-{
-  #title-container {
-    font-size: 300%;
-  }
-}
-
-@media screen and (max-device-width : 1024px)
-{
-  #title-container {
-    font-size: 400%;
-  }
 }
 
 @media screen and (max-device-width : 1171px)
 {
   #title-container {
-    font-size: 400%;
+    font-size: 300%;
+  }
+  #callback {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  #schedule {
+    span {
+      font-size: 100% !important;
+    }
+  }
+  #title-row {
+    height: 100px !important;
   }
 }
 
@@ -221,16 +212,13 @@
 #schedule {
   padding: 10px;
   background: rgba(255, 255, 255, 0.4);
-  h3 {
-    float: left;
-    width: 60%;
-    margin: 5px;
+  span {
+    font-size: 150%;
   }
   #callback {
-    float: right;
-    width: 20%;
-    margin-right: 10px;
-  }
+    width: 40%;
+    margin-left: 100px;
+   }
 }
 
 .block {

@@ -322,9 +322,10 @@ class Shop extends React.Component {
     <div className="container" id="main_container">
       <div className="row">
         <div id="schedule" className="thumbnail col-sm-12 col-md-12 col-lg-12">
-          <h3>{I18n.t('schedule')}</h3>
-          <button id="callback" className="btn btn-primary" onClick={this.openModal2}>{I18n.t('callback')}</button>
-          <h3><%= image_tag('kyivstar_ico.png', size: "16x16")%> +380989129521 <%= image_tag('vodafone_ico.png', size: "16x16")%> +380500386617</h3>
+          <span className="col-sm-6 col-md-6 col-lg-6">{I18n.t('schedule')}</span>
+          <button id="callback" className="btn btn-primary col-sm-6 col-md-6 col-lg-6" onClick={this.openModal2}>{I18n.t('callback')}</button>
+          <br/>
+          <span className="col-sm-12 col-md-12 col-lg-12"><%= image_tag('kyivstar_ico.png', size: "16x16")%> +380989129521 <%= image_tag('vodafone_ico.png', size: "16x16")%> +380500386617</span>
         </div>
       </div>
       <div className="row">
