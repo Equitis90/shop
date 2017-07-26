@@ -23,7 +23,7 @@
       .description {
         height: 65px;
         position: relative;
-        width: auto;
+        width: 100%;
         overflow: hidden;
       }
 
@@ -32,6 +32,7 @@
           height: 100%;
           z-index: 100;
           background: #e3ceb3;
+          width: 100%;
         }
       }
 
