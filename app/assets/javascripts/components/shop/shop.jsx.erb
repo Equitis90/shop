@@ -184,6 +184,7 @@ class Shop extends React.Component {
   }
 
   order(phone) {
+
     $.ajax({
       url: `/basket/order`,
       type: 'GET',
@@ -330,7 +331,7 @@ class Shop extends React.Component {
       </div>
       <div className="row">
         <div id="title-row" className="col-sm-6 col-md-6 col-lg-6">
-          <h3 className="lead left"><div id="title-container">CheapSale</div><div id="slogan">{I18n.t('slogan')}</div></h3>
+          <h3 className="lead left"><%= image_tag 'title.jpg' %></h3>
         </div>
         <div className="col-sm-6 col-md-6 col-lg-6">
           <div className="promo">

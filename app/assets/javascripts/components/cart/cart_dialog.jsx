@@ -14,7 +14,8 @@ class CartDialog extends React.Component {
   }
 
   order(phone) {
-    this.props.order(phone)
+    $('#order_button').attr("disabled", true);
+    this.props.order(phone);
   }
 
   handleChange(event) {
@@ -114,14 +115,13 @@ class CartDialog extends React.Component {
         <div className="col-sm-12 col-md-12 col-lg-12">
           <label>{I18n.t('phone_number')} <input name="phone" ref="phone" value={this.state.phone} onChange={this.handleChange}/></label>
           &nbsp;
-          <button className="btn btn-primary" disabled={this.state.isButtonDisable} onClick={this.order.bind(this, this.state.phone)}>{I18n.t('create_order')}</button>
+          <button id="order_button" className="btn btn-primary" disabled={this.state.isButtonDisable} onClick={this.order.bind(this, this.state.phone)}>{I18n.t('create_order')}</button>
         </div>
       </div>
       <div className="row buttons">
         <button className="btn btn-default" onClick={this.props.closeBasket}>{I18n.t('close_cart')}</button>
       </div>
     </div>
-
     )
   }
 }
