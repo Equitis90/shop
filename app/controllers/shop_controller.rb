@@ -26,6 +26,7 @@ class ShopController < ApplicationController
       end
       if params[:original] && params[:original] != ''
         @items = @items.where(original: params[:original] == 'original' ? true : false)
+        @original = params[:original]
       else
         @items = @items.where(original: false)
       end
