@@ -35,6 +35,8 @@ class ShopController < ApplicationController
       end
     end
 
+    @meta_description = t(:description)
+
     @last_page = @items.last_page?
 
     respond_to do |format|
@@ -44,9 +46,11 @@ class ShopController < ApplicationController
   end
 
   def about
+    @meta_title = meta_title t(:about)
   end
 
   def delivery
+    @meta_title = meta_title t(:delivery)
   end
 
   def select_locale
@@ -59,7 +63,7 @@ class ShopController < ApplicationController
   end
 
   def legal_notes
-
+    @meta_title = meta_title t(:legal_notes)
   end
 
   def site_verification
@@ -81,10 +85,10 @@ class ShopController < ApplicationController
   end
 
   def info
-
+    @meta_title = meta_title t(:info)
   end
 
   def info2
-
+    @meta_title = meta_title t(:license)
   end
 end

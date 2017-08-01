@@ -27,4 +27,10 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = session[:locale] || I18n.default_locale
   end
+
+  BRAND_NAME = I18n.t(:brand).freeze
+
+  def meta_title(title)
+    [title, BRAND_NAME].reject(&:empty?).join(' | ')
+  end
 end

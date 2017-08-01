@@ -8,7 +8,7 @@
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-M6JC4FD');</script>
     <!-- End Google Tag Manager -->
-    <title>CheapSale - магазин парфюмерии. Оригинальная парфюмерия</title>
+    <title><%= @meta_title ? @meta_title : ApplicationController::BRAND_NAME %></title>
     <%= favicon_link_tag 'bottle.ico' %>
     <%= csrf_meta_tags %>
 
@@ -18,7 +18,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.perfumes.net.ua">
-    <meta name="description" content="Онлайн-магазин духов. Оригинал, лицензия! Бесплатная доставка по Украине! Низкие цены на оригинальную парфюмерию! Отправка в день заказа!">
+    <% if @meta_description.present? %>
+      <meta name="description" content="<%= @meta_description %>">
+    <% end %>
+    <meta property="og:title" content="<%= t(:brand) %>">
+    <meta property="og:description" content="<%= t(:description) %>">
+    <meta property="og:url" content="https://www.perfumes.net.ua">
+    <meta property="og:image" content="<%= image_url 'logo.png' %>">
   </head>
 
   <body>
@@ -77,7 +83,7 @@
     <footer>
       <div class="row">
         <div class="col-lg-12">
-          <p class="legal_notes">Copyright &copy; <a href="https://github.com/Equitis90" >Equitis</a> | <%= link_to t(:legal_notes), shop_legal_notes_path %></p>
+          <p class="legal_notes">Copyright &copy; <a href="https://github.com/Equitis90" rel="nofollow">Equitis</a> | <%= link_to t(:legal_notes), shop_legal_notes_path %></p>
         </div>
       </div>
     </footer>

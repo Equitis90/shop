@@ -127,17 +127,8 @@
   font-size: 150%;
 }
 
-#title-container {
-  font-size: 460%;
-  font-family: 'Limelight', cursive;
-  color: #35025c;
-}
-
 @media screen and (max-device-width : 1171px)
 {
-  #title-container {
-    font-size: 300%;
-  }
   #callback {
     width: 100% !important;
     margin-left: 0 !important;
@@ -160,6 +151,7 @@
 .promo {
   font-size: 120%;
 }
+
 .lead {
   img {
     width: 100%;
