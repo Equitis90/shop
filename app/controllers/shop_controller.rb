@@ -3,6 +3,7 @@ class ShopController < ApplicationController
     page = params[:page] || 1
     @vendor = []
     @original = 'license'
+    @discount = ''
     if params[:brand] && Item.where(vendor: params[:brand]).first
       @items = Item.where(vendor: params[:brand]).page(1).per(12).order(:id)
       @vendor = [params[:brand]]
@@ -32,6 +33,7 @@ class ShopController < ApplicationController
       end
       if params[:discount] && params[:discount] != ''
         @items = @items.where('discount > 0')
+        @discount = 'discount'
       end
     end
 
