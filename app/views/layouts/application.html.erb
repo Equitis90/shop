@@ -16,15 +16,15 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Limelight" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.perfumes.net.ua">
     <% if @meta_description.present? %>
       <meta name="description" content="<%= @meta_description %>">
     <% end %>
-    <meta property="og:title" content="<%= t(:brand) %>">
-    <meta property="og:description" content="<%= t(:description) %>">
-    <meta property="og:url" content="https://www.perfumes.net.ua">
-    <meta property="og:image" content="<%= image_url 'logo.png' %>">
+    <meta property="og:locale" content="ru_UA"/>
+    <meta property="og:title" content="<%= t(:brand) %>"/>
+    <meta property="og:description" content="<%= t(:description) %>"/>
+    <meta property="og:url" content="https://www.perfumes.net.ua"/>
+    <meta property="og:image" content="<%= image_url 'logo.png' %>"/>
   </head>
 
   <body>
