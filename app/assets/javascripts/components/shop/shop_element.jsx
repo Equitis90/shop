@@ -52,7 +52,7 @@ class ShopElement extends React.Component {
       <div className="thumbnail item">
         <div className="caption">
           {discount}
-          <img src={this.props.item.image} alt="" height={220} width={320}/>
+          <img src={this.props.item.image} alt={this.props.item.title} height={220} width={320}/>
           <h4>{this.props.item.title}</h4>
           <h4 className="priceh"><div className="left">{I18n.t('price')} </div>{price}</h4>
           <p>{I18n.t('brand')} {this.props.item.vendor}</p>

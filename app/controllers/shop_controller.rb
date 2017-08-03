@@ -5,7 +5,7 @@ class ShopController < ApplicationController
     @original = 'license'
     @discount = ''
     if params[:brand] && Item.where(vendor: params[:brand]).first
-      @items = Item.where(vendor: params[:brand]).page(1).per(12).order(:id)
+      @items = Item.where(vendor: params[:brand]).page(1).per(6).order(:id)
       @vendor = [params[:brand]]
       if params[:original] && params[:original] != ''
         @items = @items.where(original: params[:original] == 'original' ? true : false)
@@ -14,7 +14,7 @@ class ShopController < ApplicationController
         @items = @items.where(original: false)
       end
     else
-      @items = Item.page(page).per(12).order(:id)
+      @items = Item.page(page).per(6).order(:id)
       if params[:vendor] && params[:vendor] != []
         @items = @items.where(vendor: params[:vendor])
         @vendor = params[:vendor]
@@ -76,14 +76,18 @@ class ShopController < ApplicationController
     render :text => "https://www.perfumes.net.ua\n
                      https://www.perfumes.net.ua/delivery\n
                      https://www.perfumes.net.ua/about\n
-                     https://www.perfumes.net.ua/legal_notes"
+                     https://www.perfumes.net.ua/legal_notes\n
+                     https://www.perfumes.net.ua/info\n
+                     https://www.perfumes.net.ua/info2"
   end
 
   def site_map_http
     render :text => "http://www.perfumes.net.ua\n
                      http://www.perfumes.net.ua/delivery\n
                      http://www.perfumes.net.ua/about\n
-                     http://www.perfumes.net.ua/legal_notes"
+                     http://www.perfumes.net.ua/legal_notes
+                     http://www.perfumes.net.ua/info\n
+                     http://www.perfumes.net.ua/info2"
   end
 
   def info
