@@ -55,7 +55,7 @@ class ShopElement extends React.Component {
           <img src={this.props.item.image} alt={this.props.item.title} height={220} width={320}/>
           <h4>{this.props.item.title}</h4>
           <h4 className="priceh"><div className="left">{I18n.t('price')} </div>{price}</h4>
-          <p>{I18n.t('brand')} {this.props.item.vendor}</p>
+          <p>{this.props.item.vendor}</p>
           <p>{I18n.t('category')} {I18n.t(this.props.item.gender)}</p>
           {this.props.item.stock ? <p style={{color: 'green'}}>{I18n.t('instock')}</p> : <p style={{color: 'red'}}>{I18n.t('outofstock')}</p>}
           {this.props.item.original ? <p>{I18n.t('original')}</p> : <p>{I18n.t('license')}</p>}
