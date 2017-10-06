@@ -33,7 +33,8 @@ class Shop extends React.Component {
       title: '',
       typed_title: '',
       original: this.props.original,
-      discount: this.props.discount
+      discount: this.props.discount,
+      spinner_opacity: 0
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -126,16 +127,15 @@ class Shop extends React.Component {
       $("#scroll-top").css({ opacity: 0 });
     }
     if (windowBottom >= docHeight && this.state.last_page !== true) {
-      $(".spinner").css({ opacity: 1 });
+      this.setState({spinner_opacity: 1});
       let page = this.state.page + 1;
       $.ajax({
         url: `/shop/index.json`,
         type: 'get',
         data: {gender: this.state.gender, vendor: this.state.vendor, page: page, title: this.state.typed_title, original: this.state.original, discount: this.state.discount},
         success:(response) => {
-          let newItems = this.state.items.slice().concat(response.items);
-          this.setState({ items: newItems, last_page: response.last_page, page: page});
-          $(".spinner").css({ opacity: 0 });
+          let newItems = this.state.items.concat(response.items);
+          this.setState({ items: newItems, last_page: response.last_page, page: page, spinner_opacity: 0});
         },
         error: (response) => {
           this.handleError(response.responseJSON.errors)
@@ -146,13 +146,6 @@ class Shop extends React.Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
-    if (this.state.vendor !== []) {
-      let arrayLength = this.state.vendor.length;
-      for (var i = 0; i < arrayLength; i++) {
-        vd = this.state.vendor[i];
-        $('input[name="'+vd+'"]').prop('checked', true);
-      }
-    }
   }
 
   componentWillUnmount() {
@@ -168,7 +161,6 @@ class Shop extends React.Component {
 
     if(value === 'all') {
       all_vendors = true;
-      $(".opt").prop('checked', false);
       newVendor = [];
     } else {
       all_vendors = false;
@@ -375,42 +367,42 @@ class Shop extends React.Component {
         <div className="col-sm-3 col-md-3 col-lg-3">
           <div className="thumbnail" id="vendors-container">
             <h4>{I18n.t('brends')}</h4>
-            <ul className="vendors">
+            <ul className="vendors" ref="checkboxes">
               <li><label><input value="all" type="checkbox" checked={this.state.all_vendors} onChange={this.handleCheckbox}/> {I18n.t('all')}</label></li>
-              <li><label><input className="opt" name="Angel Schlesser" value="Angel Schlesser" type="checkbox" onChange={this.handleCheckbox}/> Angel Schlesser</label></li>
-              <li><label><input className="opt" name="Antonio Banderas" value="Antonio Banderas" type="checkbox" onChange={this.handleCheckbox}/> Antonio Banderas</label></li>
-              <li><label><input className="opt" name="Armand Basi" value="Armand Basi" type="checkbox" onChange={this.handleCheckbox}/> Armand Basi</label></li>
-              <li><label><input className="opt" name="Armani" value="Armani" type="checkbox" onChange={this.handleCheckbox}/> Giorgio Armani</label></li>
-              <li><label><input className="opt" name="Beyonce" value="Beyonce" type="checkbox" onChange={this.handleCheckbox}/> Beyonce</label></li>
-              <li><label><input className="opt" name="Bond" value="Bond" type="checkbox" onChange={this.handleCheckbox}/> Bond</label></li>
-              <li><label><input className="opt" name="Burberry" value="Burberry" type="checkbox" onChange={this.handleCheckbox}/> Burberry</label></li>
-              <li><label><input className="opt" name="Bvlgari" value="Bvlgari" type="checkbox" onChange={this.handleCheckbox}/> Bvlgari</label></li>
-              <li><label><input className="opt" name="Cacharel" value="Cacharel" type="checkbox" onChange={this.handleCheckbox}/> Cacharel</label></li>
-              <li><label><input className="opt" name="Calvin Klein" value="Calvin Klein" type="checkbox" onChange={this.handleCheckbox}/> Calvin Klein</label></li>
-              <li><label><input className="opt" name="Carolina Herrera" value="Carolina Herrera" type="checkbox" onChange={this.handleCheckbox}/> Carolina Herrera</label></li>
-              <li><label><input className="opt" name="Chanel" value="Chanel" type="checkbox" onChange={this.handleCheckbox}/> Chanel</label></li>
-              <li><label><input className="opt" name="Christina Aguilera" value="Christina Aguilera" type="checkbox" onChange={this.handleCheckbox}/> Christina Aguilera</label></li>
-              <li><label><input className="opt" name="Davidoff" value="Davidoff" type="checkbox" onChange={this.handleCheckbox}/> Davidoff</label></li>
-              <li><label><input className="opt" name="Dior" value="Dior" type="checkbox" onChange={this.handleCheckbox}/> Dior</label></li>
-              <li><label><input className="opt" name="Dolce&Gabbana" value="Dolce&Gabbana" type="checkbox" onChange={this.handleCheckbox}/> Dolce&Gabbana</label></li>
-              <li><label><input className="opt" name="Donna Karan" value="Donna Karan" type="checkbox" onChange={this.handleCheckbox}/> Donna Karan</label></li>
-              <li><label><input className="opt" name="Givenchy" value="Givenchy" type="checkbox" onChange={this.handleCheckbox}/> Givenchy</label></li>
-              <li><label><input className="opt" name="Gucci" value="Gucci" type="checkbox" onChange={this.handleCheckbox}/> Gucci</label></li>
-              <li><label><input className="opt" name="Hermes" value="Hermes" type="checkbox" onChange={this.handleCheckbox}/> Hermes</label></li>
-              <li><label><input className="opt" name="Hugo Boss" value="Hugo Boss" type="checkbox" onChange={this.handleCheckbox}/> Hugo Boss</label></li>
-              <li><label><input className="opt" name="Jimmy Choo" value="Jimmy Choo" type="checkbox" onChange={this.handleCheckbox}/> Jimmy Choo</label></li>
-              <li><label><input className="opt" name="Kenzo" value="Kenzo" type="checkbox" onChange={this.handleCheckbox}/> Kenzo</label></li>
-              <li><label><input className="opt" name="Lacoste" value="Lacoste" type="checkbox" onChange={this.handleCheckbox}/> Lacoste</label></li>
-              <li><label><input className="opt" name="Lancome" value="Lancome" type="checkbox" onChange={this.handleCheckbox}/> Lancome</label></li>
-              <li><label><input className="opt" name="Lanvin" value="Lanvin" type="checkbox" onChange={this.handleCheckbox}/> Lanvin</label></li>
-              <li><label><input className="opt" name="Moschino" value="Moschino" type="checkbox" onChange={this.handleCheckbox}/> Moschino</label></li>
-              <li><label><input className="opt" name="Nina Ricci" value="Nina Ricci" type="checkbox" onChange={this.handleCheckbox}/> Nina Ricci</label></li>
-              <li><label><input className="opt" name="Paco Rabanne" value="Paco Rabanne" type="checkbox" onChange={this.handleCheckbox}/> Paco Rabanne</label></li>
-              <li><label><input className="opt" name="Roberto Cavalli" value="Roberto Cavalli" type="checkbox" onChange={this.handleCheckbox}/> Roberto Cavalli</label></li>
-              <li><label><input className="opt" name="Trussardi" value="Trussardi" type="checkbox" onChange={this.handleCheckbox}/> Trussardi</label></li>
-              <li><label><input className="opt" name="Versace" value="Versace" type="checkbox" onChange={this.handleCheckbox}/> Versace</label></li>
-              <li><label><input className="opt" name="Vin Diesel" value="Vin Diesel" type="checkbox" onChange={this.handleCheckbox}/> Vin Diesel</label></li>
-              <li><label><input className="opt" name="Yves Saint Laurent" value="Yves Saint Laurent" type="checkbox" onChange={this.handleCheckbox}/> Yves Saint Laurent</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Angel Schlesser")} name="Angel Schlesser" value="Angel Schlesser" type="checkbox" onChange={this.handleCheckbox}/> Angel Schlesser</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Antonio Banderas")} name="Antonio Banderas" value="Antonio Banderas" type="checkbox" onChange={this.handleCheckbox}/> Antonio Banderas</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Armand Basi")} name="Armand Basi" value="Armand Basi" type="checkbox" onChange={this.handleCheckbox}/> Armand Basi</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Armani")} name="Armani" value="Armani" type="checkbox" onChange={this.handleCheckbox}/> Giorgio Armani</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Beyonce")} name="Beyonce" value="Beyonce" type="checkbox" onChange={this.handleCheckbox}/> Beyonce</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Bond")} name="Bond" value="Bond" type="checkbox" onChange={this.handleCheckbox}/> Bond</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Burberry")} name="Burberry" value="Burberry" type="checkbox" onChange={this.handleCheckbox}/> Burberry</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Bvlgari")} name="Bvlgari" value="Bvlgari" type="checkbox" onChange={this.handleCheckbox}/> Bvlgari</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Cacharel")} name="Cacharel" value="Cacharel" type="checkbox" onChange={this.handleCheckbox}/> Cacharel</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Calvin Klein")} name="Calvin Klein" value="Calvin Klein" type="checkbox" onChange={this.handleCheckbox}/> Calvin Klein</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Carolina Herrera")} name="Carolina Herrera" value="Carolina Herrera" type="checkbox" onChange={this.handleCheckbox}/> Carolina Herrera</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Chanel")} name="Chanel" value="Chanel" type="checkbox" onChange={this.handleCheckbox}/> Chanel</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Christina Aguilera")} name="Christina Aguilera" value="Christina Aguilera" type="checkbox" onChange={this.handleCheckbox}/> Christina Aguilera</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Davidoff")} name="Davidoff" value="Davidoff" type="checkbox" onChange={this.handleCheckbox}/> Davidoff</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Dior")} name="Dior" value="Dior" type="checkbox" onChange={this.handleCheckbox}/> Dior</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Dolce&Gabbana")} name="Dolce&Gabbana" value="Dolce&Gabbana" type="checkbox" onChange={this.handleCheckbox}/> Dolce&Gabbana</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Donna Karan")} name="Donna Karan" value="Donna Karan" type="checkbox" onChange={this.handleCheckbox}/> Donna Karan</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Givenchy")} name="Givenchy" value="Givenchy" type="checkbox" onChange={this.handleCheckbox}/> Givenchy</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Gucci")} name="Gucci" value="Gucci" type="checkbox" onChange={this.handleCheckbox}/> Gucci</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Hermes")} name="Hermes" value="Hermes" type="checkbox" onChange={this.handleCheckbox}/> Hermes</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Hugo Boss")} name="Hugo Boss" value="Hugo Boss" type="checkbox" onChange={this.handleCheckbox}/> Hugo Boss</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Jimmy Choo")} name="Jimmy Choo" value="Jimmy Choo" type="checkbox" onChange={this.handleCheckbox}/> Jimmy Choo</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Kenzo")} name="Kenzo" value="Kenzo" type="checkbox" onChange={this.handleCheckbox}/> Kenzo</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Lacoste")} name="Lacoste" value="Lacoste" type="checkbox" onChange={this.handleCheckbox}/> Lacoste</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Lancome")} name="Lancome" value="Lancome" type="checkbox" onChange={this.handleCheckbox}/> Lancome</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Lanvin")} name="Lanvin" value="Lanvin" type="checkbox" onChange={this.handleCheckbox}/> Lanvin</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Moschino")} name="Moschino" value="Moschino" type="checkbox" onChange={this.handleCheckbox}/> Moschino</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Nina Ricci")} name="Nina Ricci" value="Nina Ricci" type="checkbox" onChange={this.handleCheckbox}/> Nina Ricci</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Paco Rabanne")} name="Paco Rabanne" value="Paco Rabanne" type="checkbox" onChange={this.handleCheckbox}/> Paco Rabanne</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Roberto Cavalli")} name="Roberto Cavalli" value="Roberto Cavalli" type="checkbox" onChange={this.handleCheckbox}/> Roberto Cavalli</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Trussardi")} name="Trussardi" value="Trussardi" type="checkbox" onChange={this.handleCheckbox}/> Trussardi</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Versace")} name="Versace" value="Versace" type="checkbox" onChange={this.handleCheckbox}/> Versace</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Vin Diesel")} name="Vin Diesel" value="Vin Diesel" type="checkbox" onChange={this.handleCheckbox}/> Vin Diesel</label></li>
+              <li><label><input className="opt" checked={this.state.vendor.includes("Yves Saint Laurent")} name="Yves Saint Laurent" value="Yves Saint Laurent" type="checkbox" onChange={this.handleCheckbox}/> Yves Saint Laurent</label></li>
             </ul>
             <h4>{I18n.t('elite')}</h4>
             <ul className="vendors">
@@ -434,7 +426,7 @@ class Shop extends React.Component {
           </div>
           <div className="row" id="list">
             <ShopList items={this.state.items} toBasket={this.toBasket}/>
-            <span className="spinner" style={{opacity: 0}}></span>
+            <span className="spinner" style={{opacity: this.state.spinner_opacity}}></span>
           </div>
         </div>
       </div>

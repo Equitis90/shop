@@ -1,6 +1,6 @@
 # README
 
-Perfumery shop application, can by found on addres www.perfumes.net.ua
+Perfumery shop application, can be found on address www.perfumes.net.ua
 
 * Ruby version - 2.3.4
 * Rails - 5.0.2

@@ -14,7 +14,7 @@ class CartDialog extends React.Component {
   }
 
   order(phone) {
-    $('#order_button').attr("disabled", true);
+    this.setState({isButtonDisable: true});
     this.props.order(phone);
   }
 

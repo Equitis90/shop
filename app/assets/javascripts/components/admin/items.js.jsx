@@ -17,7 +17,8 @@ class Items extends React.Component {
       error_message: '',
       modalIsOpen: false,
       last_page: false,
-      page: 1
+      page: 1,
+      spinner_opacity: 0
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,7 +46,7 @@ class Items extends React.Component {
       $("#scroll-top").css({ opacity: 0 });
     }
     if (windowBottom >= docHeight && this.state.last_page !== true) {
-      $(".spinner").css({ opacity: 1 });
+      this.setState({spinner_opacity: 1});
       let page = this.state.page + 1;
       $.ajax({
         url: `/items.json`,
@@ -53,8 +54,7 @@ class Items extends React.Component {
         data: {page: page },
         success:(response) => {
           let newItems = this.state.items.slice().concat(response.items);
-          this.setState({ items: newItems, last_page: response.last_page, page: page});
-          $(".spinner").css({ opacity: 0 });
+          this.setState({ items: newItems, last_page: response.last_page, page: page, spinner_opacity: 0});
         },
         error: (response) => {
           this.handleError(response.responseJSON.errors)
@@ -173,7 +173,7 @@ class Items extends React.Component {
         > <NewItem title="" description="" price="0.00" gender="women" handleSubmit={this.handleSubmit} handleError={this.handleError}/>
         </ReactModal>
         <AllItems items={this.state.items} handleDelete={this.handleDelete} onUpdate={this.handleUpdate}/>
-        <span className="spinner" style={{opacity: 0}}></span>
+        <span className="spinner" style={{opacity: this.state.spinner_opacity}}/>
       </div>
     );
   }
