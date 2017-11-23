@@ -341,10 +341,10 @@ class Shop extends React.Component {
             <a href="" className="list-group-item or disc" onClick={this.handleClickDiscount.bind(this, 'discount')}>{I18n.t("discount_button")}</a>
             <a href="" className="list-group-item or" onClick={this.handleClickDiscount.bind(this, '')}>{I18n.t("all")}</a>
           </div>
-          <div className="list-group">
+          {/*<div className="list-group">
             <a href="" className="list-group-item or" onClick={this.handleClickOriginal.bind(this, 'original')}>{I18n.t("original")}</a>
             <a href="" className="list-group-item or" onClick={this.handleClickOriginal.bind(this, 'license')}>{I18n.t("license")}</a>
-          </div>
+          </div>*/}
           <div className="list-group">
             <ShopSorter title={I18n.t("men")} handleClick={this.handleClick.bind(this, 'men')}/>
             <ShopSorter title={I18n.t("women")} handleClick={this.handleClick.bind(this, 'women')}/>

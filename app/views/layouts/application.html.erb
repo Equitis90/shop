@@ -63,9 +63,6 @@
           <li>
             <%= link_to t(:info), shop_info_path %>
           </li>
-          <li>
-            <%= link_to t(:license), shop_info2_path %>
-          </li>
           <% if session[:current_user] %>
             <li><%= link_to t(:item_edit), admin_index_path, data: { turbolinks: false } %></li>
             <li><%= link_to t(:exit), session_path('logout'), method: :delete %></li>
