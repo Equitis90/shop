@@ -94,9 +94,6 @@
   float: right;
 }
 
-.left {
-  float: left;
-}
 
 .priceh:before,
 .priceh:after {
@@ -138,24 +135,23 @@
       font-size: 100% !important;
     }
   }
-  #title-row {
-    height: 122px !important;
-  }
 }
 
 #title-row {
-  height: 200px;
-  margin-top: -20px;
+  text-align: center;
+  margin: auto;
 }
 
 .promo {
-  font-size: 120%;
+  ul {
+    list-style-type: none;
+  }
+  text-align: center;
+  font-size: 150%;
 }
 
 .lead {
-  img {
-    width: 100%;
-  }
+  margin:auto;
 }
 
 .list-group-item {

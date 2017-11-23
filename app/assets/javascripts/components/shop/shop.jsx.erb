@@ -317,23 +317,20 @@ class Shop extends React.Component {
         <div id="schedule" className="thumbnail col-sm-12 col-md-12 col-lg-12">
           <span className="col-sm-6 col-md-6 col-lg-6">{I18n.t('schedule')}</span>
           <button id="callback" className="btn btn-primary col-sm-6 col-md-6 col-lg-6" onClick={this.openModal2}>{I18n.t('callback')}</button>
-          <br/>
-          <span className="col-sm-12 col-md-12 col-lg-12"><%= image_tag('kyivstar_ico.png', size: "16x16")%> +380989129521 <%= image_tag('vodafone_ico.png', size: "16x16")%> +380954108834</span>
         </div>
       </div>
       <div className="row">
-        <div id="title-row" className="col-sm-6 col-md-6 col-lg-6">
-          <h3 className="lead left"><%= image_tag 'title.jpg', alt: 'CheapSale'%></h3>
+        <div id="title-row" className="col-sm-12 col-md-12 col-lg-12">
+          <%= image_tag 'title.png', alt: 'CheapSale'%>
         </div>
-        <div className="col-sm-6 col-md-6 col-lg-6">
+      </div>
+      <div className="row">
+        <div className="col-sm-12 col-md-12 col-lg-12">
           <div className="promo">
-            Оригинал или лицензия? Выбери сам!
             <ul>
-              <li>Бесплатная доставка!</li>
-              <li style={{marginLeft: '20px'}}>Низкие цены на оригинальную парфюмерию!</li>
-              <li style={{marginLeft: '40px'}}>Отправка в день заказа! </li>
-              <li style={{marginLeft: '60px'}}>Покупай 3 флакона лицензии – 4й в подарок!</li>
-              <li style={{marginLeft: '80px'}}>Курьерская доставка по Киеву</li>
+              <li>Успей купить новогодний подарок ВЫГОДНО!"</li>
+              <li>ещё ниже "Новогодние скидки!</li>
+              <li>Оплата при получении!</li>
             </ul>
           </div>
         </div>
