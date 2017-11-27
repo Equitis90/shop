@@ -51,6 +51,7 @@ class ShopElement extends React.Component {
     return (
       <div className="thumbnail item">
         <div className="caption">
+          <div className="discount">%</div>
           {discount}
           <img src={this.props.item.image} alt={this.props.item.title} height={220} width={320}/>
           <h4>{this.props.item.title}</h4>
